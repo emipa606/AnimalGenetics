@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Animal Genetics</name>
+  <author>gregorycurrie</author>
+  <packageId>gregorycurrie.AnimalGenetics</packageId>
+  <supportedVersions>
+    <li>1.3</li>
+    <li>1.2</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <url>https://github.com/gregorycu/AnimalGenetics/releases</url>
+  <description>Animal Genetics adds 7 genetics traits to animals that can be passed down to their children. Children will be born with either parent's value inherited modified by a mutation factor.
+
+Selectively breed your animals to be stronger and faster, carry more in caravans, or increase meat/leather/milk/wool yields. Humans have been doing it for 1000s of years, so why not your Rimworld Pawns?
+
+Go from Muffalos to &lt;b&gt;Buff&lt;/b&gt;alos.</description>
+</ModMetaData>

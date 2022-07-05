@@ -1,26 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Animal Genetics</name>
-	<author>gregorycurrie</author>
-    <packageId>gregorycurrie.AnimalGenetics</packageId>
-	<supportedVersions>
-		<li>1.3</li>
-		<li>1.2</li>
-	</supportedVersions>
-	<modDependencies>
-		<li>
-			<packageId>brrainz.harmony</packageId>
-			<displayName>Harmony</displayName>
-			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
-			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
-		</li>
-	</modDependencies>
-	<loadAfter>
-		<li>brrainz.harmony</li>
-	</loadAfter>
-	<url>https://github.com/gregorycu/AnimalGenetics/releases</url>
-	<description>Animal Genetics adds 7 genetics traits to animals that can be passed down to their children. Children will be born with either parent's value inherited modified by a mutation factor.
+  <name>Animal Genetics (Continued)</name>
+  <packageId>Mlie.AnimalGenetics</packageId>
+  <author>gregorycurrie</author>
+  <url>https://github.com/emipa606/AnimalGenetics</url>
+  <supportedVersions>
+    <li>1.2</li>
+    <li>1.3</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
+Update of gregorycurries mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=2226725974
 
-Selectively breed your animals to be stronger and faster, carry more in caravans, or increase meat/leather/milk/wool yields. Humans have been doing it for 1000s of years, so why not your Rimworld Pawns?
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
-Go from Muffalos to &lt;b&gt;Buff&lt;/b&gt;alos.</description>
+[table]
+    [tr]
+        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/AnimalGenetics][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+    [tr]
+        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
+        [td][img]https://i.imgur.com/h5VwTNL.png[/img][/td]
+    [/tr]
+[/table]
+	
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
+[h1]About[/h1]
+
+Animal Genetics adds 7 genetics traits to animals that can be passed down to their children. Children will be born with either parent's value inherited modified by a mutation factor.
+
+Selectively breed your animals to be stronger and faster, carry more in caravans, or increase meat/leather/milk/wool yields. Humans have been doing it for 1000s of years, so why not your Rimworld Pawns? Go from Muffalos to [b]Buff[/b]alos!
+
+These genes will modify the animals base values by a % value. Adds new Genetics tabs to display all animals/wildlife values, as well as on animals detailing their stat breakdown (see screenshots).
+
+For example, an animal with a 150% Speed gene will move 50% faster than base, or an animal with a 200% Milk/Wool gene will produce 100% more Milk/Wool. Be careful however, as animals can have genes with values under 100%, resulting in a decrease to base values.
+
+The gene range for wild/parentless animals as well as the mutation factor can both be adjusted in game via the mod options menu. Also include two different color schemes when displaying gene values (see screenshots).
+
+In addition to all this, there is also optional support for applying the same genes to humanlike pawns. This should be widely compatible with mods that allow human reproduction. This feature can be turned on in the mod options.
+
+[h1]Traits[/h1]
+[list]
+[*][b]Health[/b] - Total health of body parts. 
+[*][b]Damage[/b] - Melee attack damage.
+[*][b]Speed[/b] - Movement speed.
+[*][b]Capacity[/b] - Carry capacity and caravan weight.
+[*][b]Meat[/b] - Meat from butchering.
+[*][b]Leather[/b] - Leather from butchering.
+[*][b]Milk/Wool[/b] - Milk/Wool yield.
+[/list]
+
+[h1]Compatibility[/h1]
+Plays nice with other mods in testing. Should also be safe to remove and add mid-game.
+[b]Requires Harmony.[/b]
+
+[h1]Tested With Popular Animal-Related Mods including...[/h1]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1541721856]Alpha Animals[/url]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2026992161]Dragon's Descent[/url]
+
+Recommended to use alongside a mod that adds neutering such as [url=steamcommunity.com/sharedfiles/filedetails/?id=751049133]The Birds and the Bees[/url] or [url=steamcommunity.com/sharedfiles/filedetails/?id=1501449584][SYR] Neuter[/url].
+
+[h1]F.A.Q[/h1]
+
+[h3]Is there an inbreeding penalty?[/h3]
+Not currently, but we may add an optional penalty in the future
+[h3]Will this work with mod X?[/h3]
+Quite possibly. This mod is designed to not do anything too extravagant. Most mods that add animals will work out of the box.
+[h3]Can you make this work with humans?[/h3]
+This mod already supports applying genes to humans. This option may be turned on in Mod Options page.
+[h3]It works with humans, but humans can't have children?[/h3]
+There are mods add support for this. In addition, generated pawns who are related will be generated with similar stats.
+[h3]Does this mod support Rimworld Version 1.1[/h3]
+Our testing has revealed this mod does appear to support 1.1. However, we do not perform ongoing tests against this version.
+[h3]Can you blacklist certain animals to prevent this mod from modifying them[/h3]
+You cannot currently blacklist animals with this mod. However we are looking into this.
+
+[h1]Links[/h1]
+[url=https://github.com/gregorycu/AnimalGenetics/releases] Animal Genetics on GitHib[/url]
+[url=https://ludeon.com/forums/index.php?topic=53078.0] Animal Genetics on Ludeon Forums[/url]
+
+[h1]Notes[/h1]
+Please leave a comment here if you find any issues or have any suggestions for the mod.
+
+[img]https://i.imgur.com/PwoNOj4.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]</description>
 </ModMetaData>
