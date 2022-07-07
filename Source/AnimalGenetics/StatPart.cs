@@ -86,7 +86,7 @@ public class StatPart : RimWorld.StatPart
 
         if (pawn == null)
         {
-            Log.Error($"{req.Thing.ToStringSafe()} is not a Pawn");
+            Log.Error($"[AnimalGenetics]: {req.Thing.ToStringSafe()} is not a Pawn");
         }
 
         var statRecord = pawn.GetGeneRecord(_StatDef);

@@ -11,25 +11,53 @@ using Resources = FluffyManager.Resources;
 
 namespace AnimalGenetics;
 
+[StaticConstructorOnStartup]
 public class ColonyManager
 {
     private static List<KeyValuePair<Verse.WeakReference<object>, Data>> _managerJobToData =
         new List<KeyValuePair<Verse.WeakReference<object>, Data>>();
 
-    private static MethodInfo _ManagerTab_Livestock_DrawTamingSection;
-    private static MethodInfo _Widgets_Section_Section;
+    private static readonly MethodInfo _ManagerTab_Livestock_DrawTamingSection;
+    private static readonly MethodInfo _Widgets_Section_Section;
 
     private static object _CurrentJob;
-    public static bool WasPatched { get; private set; }
 
-    public static bool ModRunning
+    static ColonyManager()
     {
-        get
+        if (!Settings.Integration.ColonyManagerIntegration)
         {
-            return LoadedModManager.RunningModsListForReading.Any(x =>
-                x.PackageId == "fluffy.colonymanager" || x.Name == "Colony Manager");
+            Log.Message("[AnimalGenetics]: Will not integrate into Colony Manager");
+            return;
+        }
+
+        var harmony = new Harmony("AnimalGenetics.ColonyManager");
+        try
+        {
+            _Widgets_Section_Section = typeof(Widgets_Section).GetMethod("Section");
+            harmony.Patch(_Widgets_Section_Section,
+                new HarmonyMethod(typeof(ColonyManager), nameof(WidgetsSectionPrefix)));
+
+            _ManagerTab_Livestock_DrawTamingSection = typeof(ManagerTab_Livestock).GetMethod("DrawTamingSection",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            harmony.Patch(AccessTools.Method(typeof(ManagerTab_Livestock), "DoContent"),
+                new HarmonyMethod(typeof(ColonyManager), nameof(DoContent_Prefix)),
+                new HarmonyMethod(typeof(ColonyManager), nameof(DoContent_Postfix)));
+
+            harmony.Patch(AccessTools.Method(typeof(ManagerJob_Livestock), "DoButcherJobs"),
+                new HarmonyMethod(typeof(ColonyManager), nameof(DoButcherJobs_Prefix)));
+            harmony.Patch(AccessTools.Method(typeof(ManagerJob_Livestock), "DoTamingJobs"),
+                new HarmonyMethod(typeof(ColonyManager), nameof(DoTamingJobs_Prefix)));
+            harmony.Patch(AccessTools.Method(typeof(ManagerJob_Livestock), "ExposeData"),
+                postfix: new HarmonyMethod(typeof(ColonyManager), nameof(ExposeDataPatch)));
+
+            JobsWrapper.Init();
+        }
+        catch (NullReferenceException)
+        {
+            Log.Message("[AnimalGenetics]: Problem patching Colony Manager");
         }
     }
+
 
     private static Data GetDataOrCreate(object managerJob)
     {
@@ -69,7 +97,7 @@ public class ColonyManager
     private static float CalculatePreferenceScore(Data data, Pawn pawn)
     {
         Log.Message(
-            $"CalculatePreferenceScore for {pawn.Name}: {Constants.affectedStats.Select(gene => GetGene(pawn, gene) * data.Values[gene]).Sum()}");
+            $"[AnimalGenetics]: CalculatePreferenceScore for {pawn.Name}: {Constants.affectedStats.Select(gene => GetGene(pawn, gene) * data.Values[gene]).Sum()}");
         return Constants.affectedStats.Select(gene => GetGene(pawn, gene) * data.Values[gene]).Sum();
     }
 
@@ -79,37 +107,6 @@ public class ColonyManager
         var parameters = new object[] { position, width, drawerFunc, header, id };
         _Widgets_Section_Section.Invoke(null, parameters);
         position = (Vector2)parameters[0];
-    }
-
-    public static void Patch(Harmony h)
-    {
-        WasPatched = true;
-
-        try
-        {
-            _Widgets_Section_Section = typeof(Widgets_Section).GetMethod("Section");
-            h.Patch(_Widgets_Section_Section,
-                new HarmonyMethod(typeof(ColonyManager), nameof(WidgetsSectionPrefix)));
-
-            _ManagerTab_Livestock_DrawTamingSection = typeof(ManagerTab_Livestock).GetMethod("DrawTamingSection",
-                BindingFlags.Instance | BindingFlags.NonPublic);
-            h.Patch(AccessTools.Method(typeof(ManagerTab_Livestock), "DoContent"),
-                new HarmonyMethod(typeof(ColonyManager), nameof(DoContent_Prefix)),
-                new HarmonyMethod(typeof(ColonyManager), nameof(DoContent_Postfix)));
-
-            h.Patch(AccessTools.Method(typeof(ManagerJob_Livestock), "DoButcherJobs"),
-                new HarmonyMethod(typeof(ColonyManager), nameof(DoButcherJobs_Prefix)));
-            h.Patch(AccessTools.Method(typeof(ManagerJob_Livestock), "DoTamingJobs"),
-                new HarmonyMethod(typeof(ColonyManager), nameof(DoTamingJobs_Prefix)));
-            h.Patch(AccessTools.Method(typeof(ManagerJob_Livestock), "ExposeData"),
-                postfix: new HarmonyMethod(typeof(ColonyManager), nameof(ExposeDataPatch)));
-
-            JobsWrapper.Init();
-        }
-        catch (NullReferenceException)
-        {
-            Log.Message("Problem patching Colony Manager");
-        }
     }
 
     public static void ExposeDataPatch(object __instance)
@@ -396,7 +393,7 @@ public class ColonyManager
             }
 
 #if DEBUG_LIFESTOCK
-            Log.Message( "Doing butchery: " + Trigger.pawnKind.LabelCap );
+            Log.Message( "[AnimalGenetics]: Doing butchery: " + Trigger.pawnKind.LabelCap );
 #endif
 
             foreach (var ageSex in Utilities_Livestock.AgeSexArray)
@@ -407,7 +404,7 @@ public class ColonyManager
                               - Trigger.CountTargets[ageSex];
 
 #if DEBUG_LIFESTOCK
-                Log.Message( "Butchering " + ageSex + ", surplus" + surplus );
+                Log.Message( "[AnimalGenetics]: Butchering " + ageSex + ", surplus" + surplus );
 #endif
 
                 if (surplus > 0)
@@ -436,13 +433,13 @@ public class ColonyManager
                     }
 
 #if DEBUG_LIFESTOCK
-                    Log.Message( "Tame animals: " + animals.Count );
+                    Log.Message( "[AnimalGenetics]: Tame animals: " + animals.Count );
 #endif
 
                     for (var i = 0; i < surplus && i < animals.Count; i++)
                     {
 #if DEBUG_LIFESTOCK
-                        Log.Message( "Butchering " + animals[i].GetUniqueLoadID() );
+                        Log.Message( "[AnimalGenetics]: Butchering " + animals[i].GetUniqueLoadID() );
 #endif
                         AddDesignation(animals[i], DesignationDefOf.Slaughter);
                     }
@@ -454,7 +451,7 @@ public class ColonyManager
                     if (TryRemoveDesignation(ageSex, DesignationDefOf.Slaughter))
                     {
 #if DEBUG_LIFESTOCK
-                        Log.Message( "Removed extra butchery designation" );
+                        Log.Message( "[AnimalGenetics]: Removed extra butchery designation" );
 #endif
                         actionTaken = true;
                         surplus++;
@@ -482,7 +479,7 @@ public class ColonyManager
                               - DesignationsOfOn(DesignationDefOf.Tame, ageSex).Count;
 
 #if DEBUG_LIFESTOCK
-                Log.Message( "Taming " + ageSex + ", deficit: " + deficit );
+                Log.Message( "[AnimalGenetics]: Taming " + ageSex + ", deficit: " + deficit );
 #endif
 
                 if (deficit > 0)
@@ -516,13 +513,13 @@ public class ColonyManager
                     }
 
 #if DEBUG_LIFESTOCK
-                    Log.Message( "Wild: " + animals.Count );
+                    Log.Message( "[AnimalGenetics]: Wild: " + animals.Count );
 #endif
 
                     for (var i = 0; i < deficit && i < animals.Count; i++)
                     {
 #if DEBUG_LIFESTOCK
-                        Log.Message( "Adding taming designation: " + animals[i].GetUniqueLoadID() );
+                        Log.Message( "[AnimalGenetics]: Adding taming designation: " + animals[i].GetUniqueLoadID() );
 #endif
                         AddDesignation(animals[i], DesignationDefOf.Tame);
                     }
@@ -534,7 +531,7 @@ public class ColonyManager
                     if (TryRemoveDesignation(ageSex, DesignationDefOf.Tame))
                     {
 #if DEBUG_LIFESTOCK
-                        Log.Message( "Removed extra taming designation" );
+                        Log.Message( "[AnimalGenetics]: Removed extra taming designation" );
 #endif
                         actionTaken = true;
                         deficit++;

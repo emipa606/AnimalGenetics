@@ -210,15 +210,18 @@ internal class SettingsUI
         listingStandard2.Begin(rect2);
 
         listingStandard2.Gap(30f);
+        if (AnimalGeneticsAssemblyLoader.ColonyManagerLoaded)
+        {
+            listingStandard2.CheckboxLabeled("AnimalGenetics.ColonyManager.Integrate".Translate(),
+                ref settings.ColonyManagerIntegration, "AnimalGenetics.ColonyManager.IntegrateTooltip".Translate());
+            listingStandard2.Label("AnimalGenetics.NeedsRestart".Translate());
+            listingStandard2.Gap(30f);
+        }
+        else
+        {
+            settings.ColonyManagerIntegration = false;
+        }
 
-        var warning = settings.ColonyManagerIntegration == ColonyManager.WasPatched
-            ? new TaggedString("")
-            : new TaggedString(" (") + "AnimalGenetics.NeedsRestart".Translate() + new TaggedString(")");
-
-        listingStandard2.CheckboxLabeled("AnimalGenetics.ColonyManager.Integrate".Translate() + warning,
-            ref settings.ColonyManagerIntegration, "AnimalGenetics.ColonyManager.IntegrateTooltip".Translate());
-
-        listingStandard2.Gap(30f);
         listingStandard2.End();
 
         var bottom = new Listing_Standard();

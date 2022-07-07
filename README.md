@@ -77,7 +77,6 @@ You cannot currently blacklist animals with this mod. However we are looking int
 
 # Links
 
-https://github.com/gregorycu/AnimalGenetics/releases] Animal Genetics on GitHib
 https://ludeon.com/forums/index.php?topic=53078.0] Animal Genetics on Ludeon Forums
 
 # Notes

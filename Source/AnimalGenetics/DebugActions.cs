@@ -95,7 +95,7 @@ public class GrowUp
         {
             while (!___pawn.Dead && !__instance.CurLifeStage.reproductive)
             {
-                Log.Warning("Aging pawn");
+                Log.Warning("[AnimalGenetics]: Aging pawn");
                 __instance.DebugMake1YearOlder();
             }
         }

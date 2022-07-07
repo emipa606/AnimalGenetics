@@ -11,6 +11,7 @@ public static class AnimalGeneticsAssemblyLoader
 {
     private static readonly List<PawnColumnDef> _DefaultAnimalsPawnTableDefColumns;
     private static readonly List<PawnColumnDef> _DefaultWildlifePawnTableDefColumns;
+    public static readonly bool ColonyManagerLoaded;
 
     public static List<Type> gatherableTypes;
 
@@ -32,7 +33,7 @@ public static class AnimalGeneticsAssemblyLoader
             }
             catch
             {
-                Log.Error($"{stat} is broken");
+                Log.Error($"[AnimalGenetics]: {stat} is broken");
             }
         }
 
@@ -59,6 +60,8 @@ public static class AnimalGeneticsAssemblyLoader
         // Compatibility patches
         try
         {
+            ColonyManagerLoaded = ModLister.GetActiveModWithIdentifier("Fluffy.ColonyManager") != null;
+
             if (LoadedModManager.RunningModsListForReading.Any(x =>
                     x.PackageId == "sarg.alphaanimals" || x.Name == "Alpha Animals"))
             {
@@ -80,7 +83,7 @@ public static class AnimalGeneticsAssemblyLoader
 
             if (LoadedModManager.RunningModsListForReading.Any(x => x.PackageId == "rim.job.world"))
             {
-                Log.Message("Patched RJW");
+                Log.Message("[AnimalGenetics]: Patched RJW");
                 h.Patch(AccessTools.Method(AccessTools.TypeByName("rjw.Hediff_BasePregnancy"), "GenerateBabies"),
                     new HarmonyMethod(typeof(CompatibilityPatches),
                         nameof(CompatibilityPatches.RJW_GenerateBabies_Prefix)),
@@ -91,11 +94,6 @@ public static class AnimalGeneticsAssemblyLoader
         catch
         {
             // ignored
-        }
-
-        if (ColonyManager.ModRunning && Settings.Integration.ColonyManagerIntegration)
-        {
-            ColonyManager.Patch(h);
         }
 
         _DefaultAnimalsPawnTableDefColumns = new List<PawnColumnDef>(PawnTableDefOf.Animals.columns);

@@ -41,13 +41,13 @@ public class BaseGeneticInformation : ThingComp
             {
                 if (LegacyGenesRecords.ContainsKey(this))
                 {
-                    Log.Message($"Migrating Legacy Genetic Information for {parent}");
+                    Log.Message($"[AnimalGenetics]: Migrating Legacy Genetic Information for {parent}");
                     GeneticInformation = new GeneticInformation(LegacyGenesRecords[this]);
                     LegacyGenesRecords.Remove(this);
                 }
                 else
                 {
-                    Log.Message($"Generating Genetic Information for {parent}");
+                    Log.Message($"[AnimalGenetics]: Generating Genetic Information for {parent}");
                     GeneticInformation = new GeneticInformation(null);
                 }
 
