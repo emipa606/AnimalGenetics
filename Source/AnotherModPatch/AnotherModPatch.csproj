@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\1.3\Assemblies</OutputPath>
+    <OutputPath>..\..\Compatibility\AnotherMod\1.3\Assemblies</OutputPath>
     <TargetFramework>net472</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -18,8 +18,15 @@
       <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="RimWorld.MultiplayerAPI">
-      <Version>*</Version>
-    </PackageReference>
+    <ProjectReference Include="..\AnimalGenetics\AnimalGenetics.csproj">
+      <CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+      <CopyLocal>False</CopyLocal>
+      <Private>false</Private>
+    </ProjectReference>
+    <Reference Include="Manager">
+      <HintPath>C:\Users\inade\Downloads\rjw-master\1.3\Assemblies\RJW.dll</HintPath>
+      <CopyLocal>False</CopyLocal>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 </Project>

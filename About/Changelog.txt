@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.3.3 - Added support for that other mod
+
+
 1.3.2 - Should no longer trigger issues for Vanilla Expanded mods.
 
 
