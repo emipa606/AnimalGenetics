@@ -2,7 +2,6 @@
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
-using rjw;
 using Verse;
 
 namespace AnimalGenetics;
@@ -21,30 +20,26 @@ public class AnotherMod
     {
         private static IEnumerable<MethodBase> TargetMethods()
         {
-            yield return AccessTools.Method(typeof(Hediff_BestialPregnancy), "GiveBirth");
-            yield return AccessTools.Method(typeof(Hediff_HumanlikePregnancy), "GiveBirth");
+            var type = AccessTools.TypeByName("PATCH_Hediff_Pregnant_DoBirthSpawn");
+            yield return AccessTools.FirstMethod(type, method => method.Name.Contains("ProcessVanillaPregnancy"));
+            yield return AccessTools.FirstMethod(type, method => method.Name.Contains("ProcessVanillaEggPregnancy"));
         }
 
-        public static void Prefix(Hediff_BestialPregnancy __instance)
+        public static void Prefix(Pawn mother, Pawn father)
         {
-            if (__instance.babies == null || __instance.babies.Count == 0)
-            {
-                return;
-            }
-
-            var motherGeneticInformation = __instance.pawn?.AnimalGenetics();
-            var fatherGeneticInformation = __instance.father?.AnimalGenetics();
+            var motherGeneticInformation = mother?.AnimalGenetics();
+            var fatherGeneticInformation = father?.AnimalGenetics();
 
             if (fatherGeneticInformation == null && motherGeneticInformation != null)
             {
-                var fatherGeneticInformationComp = __instance.pawn.health.hediffSet
-                    .GetFirstHediffOfDef(HediffDefOf.Pregnant)
+                var fatherGeneticInformationComp = mother.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.Pregnant)
                     .TryGetComp<FatherGeneticInformation>();
                 fatherGeneticInformation = fatherGeneticInformationComp?.GeneticInformation;
             }
 
             ParentReferences.Push(new ParentReferences.Record
                 { Mother = motherGeneticInformation, Father = fatherGeneticInformation });
+            Log.Message($"AnimalGenetics: Mother is {mother}, Father is {father}");
         }
 
         public static void Postfix()
