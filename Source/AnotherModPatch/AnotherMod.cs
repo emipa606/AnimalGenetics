@@ -39,7 +39,6 @@ public class AnotherMod
 
             ParentReferences.Push(new ParentReferences.Record
                 { Mother = motherGeneticInformation, Father = fatherGeneticInformation });
-            Log.Message($"AnimalGenetics: Mother is {mother}, Father is {father}");
         }
 
         public static void Postfix()

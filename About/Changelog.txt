@@ -1,5 +1,9 @@
 # Changelog for AnimalGenetics
 
+1.3.5 - Modded egglayers should now work better.
+Used DeepL to update translations for German, Russian
+
+
 1.3.4 - Fixed a bug in the last update
 
 
