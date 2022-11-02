@@ -8,7 +8,7 @@ public class PawnColumnWorker_GatherYieldGene : PawnColumnWorker
 {
     private static readonly StatDef statDef = AnimalGenetics.GatherYield;
 
-    protected override GameFont DefaultHeaderFont => GameFont.Tiny;
+    public override GameFont DefaultHeaderFont => GameFont.Tiny;
 
     public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
     {

@@ -8,7 +8,7 @@ public class PawnColumnWorker_SpeedGene : PawnColumnWorker
 {
     private static readonly StatDef statDef = StatDefOf.MoveSpeed;
 
-    protected override GameFont DefaultHeaderFont => GameFont.Tiny;
+    public override GameFont DefaultHeaderFont => GameFont.Tiny;
 
     public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
     {

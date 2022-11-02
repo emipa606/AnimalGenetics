@@ -8,7 +8,7 @@ public class PawnColumnWorker_CapacityGene : PawnColumnWorker
 {
     private static readonly StatDef statDef = StatDefOf.CarryingCapacity;
 
-    protected override GameFont DefaultHeaderFont => GameFont.Tiny;
+    public override GameFont DefaultHeaderFont => GameFont.Tiny;
 
     public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
     {

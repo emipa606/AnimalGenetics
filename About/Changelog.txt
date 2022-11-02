@@ -1,5 +1,9 @@
 # Changelog for AnimalGenetics
 
+1.4.1 - Mod updated for 1.4 and passed autotests.
+Used DeepL to update translations for ChineseSimplified, French
+
+
 1.3.5 - Modded egglayers should now work better.
 Used DeepL to update translations for German, Russian
 

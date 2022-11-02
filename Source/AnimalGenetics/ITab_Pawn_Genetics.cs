@@ -26,7 +26,7 @@ internal class ITab_Pawn_Genetics : ITab
         }
     }
 
-    protected override void FillTab()
+    public override void FillTab()
     {
         var rect = new Rect(0f, 0f, size.x, size.y).ContractedBy(20f);
         var pawn = SelPawn;
@@ -85,7 +85,7 @@ internal class ITab_Pawn_Genetics : ITab
         Text.Anchor = TextAnchor.UpperLeft;
     }
 
-    protected override void UpdateSize()
+    public override void UpdateSize()
     {
         base.UpdateSize();
         size = new Vector2(300f, 225f);

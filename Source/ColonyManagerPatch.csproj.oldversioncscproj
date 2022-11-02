@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\Compatibility\AnotherMod\1.4\Assemblies</OutputPath>
+    <OutputPath>..\..\1.4\Assemblies</OutputPath>
     <TargetFramework>net48</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -18,10 +18,5 @@
       <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <ProjectReference Include="..\AnimalGenetics\AnimalGenetics.csproj">
-	    <CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-	    <CopyLocal>False</CopyLocal>
-	    <Private>false</Private>
-    </ProjectReference>
   </ItemGroup>
 </Project>

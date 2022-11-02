@@ -13,7 +13,7 @@ public class PawnTable_Genetics : PawnTable
     {
     }
 
-    protected override IEnumerable<Pawn> PrimarySortFunction(IEnumerable<Pawn> input)
+    public override IEnumerable<Pawn> PrimarySortFunction(IEnumerable<Pawn> input)
     {
         switch (Settings.UI.sortMode)
         {

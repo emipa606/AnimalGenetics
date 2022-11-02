@@ -49,9 +49,9 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         forcePause = false;
     }
 
-    protected override PawnTableDef PawnTableDef => PawnTableDefs.Genetics;
+    public override PawnTableDef PawnTableDef => PawnTableDefs.Genetics;
 
-    protected override IEnumerable<Pawn> Pawns
+    public override IEnumerable<Pawn> Pawns
     {
         get
         {

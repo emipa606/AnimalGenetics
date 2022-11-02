@@ -8,7 +8,7 @@ public class PawnColumnWorker_DamageGene : PawnColumnWorker
 {
     private static readonly StatDef statDef = AnimalGenetics.Damage;
 
-    protected override GameFont DefaultHeaderFont => GameFont.Tiny;
+    public override GameFont DefaultHeaderFont => GameFont.Tiny;
 
     public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
     {

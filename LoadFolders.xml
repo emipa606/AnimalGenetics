@@ -10,4 +10,10 @@
     <li IfModActive="Fluffy.ColonyManager">Compatibility\ColonyManager\1.3</li>
     <li IfModActive="rim.job.world">Compatibility\AnotherMod\1.3</li>
   </v1.3>
+  <v1.4>
+    <li>/</li>
+    <li>1.4</li>
+    <li IfModActive="Fluffy.ColonyManager">Compatibility\ColonyManager\1.4</li>
+    <li IfModActive="rim.job.world">Compatibility\AnotherMod\1.4</li>
+  </v1.4>
 </loadFolders>
