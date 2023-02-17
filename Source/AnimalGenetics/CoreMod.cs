@@ -21,11 +21,6 @@ public class CoreMod : Mod
 
     public override string SettingsCategory()
     {
-        if (ConfigureInitialSettings)
-        {
-            return "Animal Genetics - Initial Game Settings";
-        }
-
-        return "Animal Genetics - Game Settings";
+        return ConfigureInitialSettings ? "Animal Genetics - Initial Game Settings" : "Animal Genetics - Game Settings";
     }
 }

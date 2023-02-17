@@ -65,4 +65,7 @@
   <AnimalGenetics.ColonyManager.Description>当动物要被指定用于驯服或屠宰时，使用动物遗传学来选择动物</AnimalGenetics.ColonyManager.Description>
   <AnimalGenetics.ColonyManager.TamingTooltip>利用基因偏好来确定应该被驯服的动物</AnimalGenetics.ColonyManager.TamingTooltip>
   <AnimalGenetics.ColonyManager.ButcheringTooltip>使用基因偏好来确定不应该被屠宰的动物</AnimalGenetics.ColonyManager.ButcheringTooltip>
+  <AG.RegenerateGenes>根据当前游戏设置重新生成基因</AG.RegenerateGenes>
+  <AnimalGenetics.GeneValue>基因值影响：{0}。</AnimalGenetics.GeneValue>
+  <AnimalGenetics.GeneValueToolTip>100%意味着该值将受到基因百分比的线性影响。这些都是计算出来的加法，所以两个115%的基因将得到30%的价值增加。这个设置可以用来改变每个百分比的值。因此，将这个值设置为50%，反而会导致前面的例子中的15%的价值增加。</AnimalGenetics.GeneValueToolTip>
 </LanguageData>

@@ -72,4 +72,7 @@
   <AnimalGenetics.ColonyManager.Description>Wenn Tiere zum Zähmen oder Schlachten bestimmt sind, verwenden Sie AnimalGenetics zur Auswahl eines Tieres</AnimalGenetics.ColonyManager.Description>
   <AnimalGenetics.ColonyManager.TamingTooltip>Verwendung von Genpräferenzen zur Bestimmung von Tieren, die gezähmt werden sollten</AnimalGenetics.ColonyManager.TamingTooltip>
   <AnimalGenetics.ColonyManager.ButcheringTooltip>Verwendung von Genpräferenzen zur Bestimmung von Tieren, die NICHT geschlachtet werden sollten</AnimalGenetics.ColonyManager.ButcheringTooltip>
+  <AG.RegenerateGenes>Gene auf der Grundlage der aktuellen Spieleinstellungen neu generieren</AG.RegenerateGenes>
+  <AnimalGenetics.GeneValue>Genwert-Effekt: {0}</AnimalGenetics.GeneValue>
+  <AnimalGenetics.GeneValueToolTip>100 % bedeutet, dass der Wert linear mit dem Prozentsatz der Gene beeinflusst wird. Die Werte werden additiv berechnet, so dass zwei Gene mit 115% einen Wertzuwachs von 30% erhalten. Diese Einstellung kann verwendet werden, um den Wert der einzelnen Prozentwerte zu ändern. Wenn Sie diesen Wert also auf 50% setzen, wird der Wert im vorherigen Beispiel um 15% erhöht.</AnimalGenetics.GeneValueToolTip>
 </LanguageData>

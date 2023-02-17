@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <AG.RegenerateGenes>Regenerate genes based on the current game-settings</AG.RegenerateGenes>
   <AG.TabGenetics>Genetics</AG.TabGenetics>
   <AG.Genetics>Genetics</AG.Genetics>
   <!-- Gene names -->
@@ -55,6 +56,8 @@
   <AG.Omniscient>Genes visible on all animals</AG.Omniscient>
   <AG.OmniscientTooltip>When disabled, you will only be able to see genetic details of your own colony's animals.</AG.OmniscientTooltip>
   <AnimalGenetics.ShowGenesInAnimalsTab>Show genes in Animal Tab</AnimalGenetics.ShowGenesInAnimalsTab>
+  <AnimalGenetics.GeneValue>Gene value effect: {0}</AnimalGenetics.GeneValue>
+  <AnimalGenetics.GeneValueToolTip>100% means that value will be affected linearly of the percent of the genes. These are calculated addative so two genes with 115% will get a 30% value increase. This setting can be used to change the value of each percent. So setting this value to 50% will instead result in a 15% value increase in the previous example.</AnimalGenetics.GeneValueToolTip>
   <AnimalGenetics.ShowGenesInAnimalsTabTooltip>Enable to show the genes in the Animal Tab.</AnimalGenetics.ShowGenesInAnimalsTabTooltip>
   <AnimalGenetics.ShowGenesInWildlifeTab>Show genes in Wildlife Tab</AnimalGenetics.ShowGenesInWildlifeTab>
   <AnimalGenetics.ShowGenesInWildlifeTabTooltip>Enable to show the genes in the Wildlife Tab.</AnimalGenetics.ShowGenesInWildlifeTabTooltip>

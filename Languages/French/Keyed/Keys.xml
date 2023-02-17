@@ -65,4 +65,7 @@
   <AnimalGenetics.ColonyManager.Description>Lorsque des animaux doivent être désignés pour être apprivoisés ou dépecés, utilisez AnimalGenetics pour sélectionner un animal.</AnimalGenetics.ColonyManager.Description>
   <AnimalGenetics.ColonyManager.TamingTooltip>Utiliser les préférences génétiques pour déterminer les animaux à apprivoiser</AnimalGenetics.ColonyManager.TamingTooltip>
   <AnimalGenetics.ColonyManager.ButcheringTooltip>Utiliser les préférences génétiques pour déterminer les animaux qui ne doivent PAS être dépecés.</AnimalGenetics.ColonyManager.ButcheringTooltip>
+  <AG.RegenerateGenes>Régénérer les gènes en fonction des paramètres de jeu actuels.</AG.RegenerateGenes>
+  <AnimalGenetics.GeneValue>Effet de la valeur du gène : {0}</AnimalGenetics.GeneValue>
+  <AnimalGenetics.GeneValueToolTip>100% signifie que la valeur sera affectée de manière linéaire par le pourcentage des gènes. Ils sont calculés de manière additive, ainsi deux gènes avec 115% auront une augmentation de valeur de 30%. Ce paramètre peut être utilisé pour modifier la valeur de chaque pourcentage. Ainsi, en fixant cette valeur à 50 %, on obtiendra une augmentation de 15 % de la valeur dans l'exemple précédent.</AnimalGenetics.GeneValueToolTip>
 </LanguageData>

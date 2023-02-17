@@ -16,15 +16,20 @@ internal class MarketValueCalculator : RimWorld.StatPart
 
         var genes = pawn.GetGenes();
 
-        var factor = genes.Select(g => pawn.GetGene(g)).Aggregate(1.0f, (lhs, rhs) => lhs * rhs);
+        float Selector(StatDef g)
+        {
+            return pawn.GetGene(g);
+        }
 
-        val *= factor;
+        var factor = genes.Select(Selector).Aggregate(1.0f, (lhs, rhs) => lhs * rhs);
+
+        val *= factor * Settings.Core.geneValue;
     }
 
     public override string ExplanationPart(StatRequest req)
     {
         float factor = 1;
         TransformValue(req, ref factor);
-        return "AG.Genetics".Translate() + ": x" + (factor * 100).ToString("F0") + "%\n";
+        return "AG.Genetics".Translate() + ": x" + factor.ToStringPercent() + "\n";
     }
 }

@@ -6,6 +6,7 @@ namespace AnimalGenetics;
 public class CoreSettings : ModSettings, ICloneable
 {
     public float bestGeneChance;
+    public float geneValue;
     public bool humanMode;
     public float mean;
     public float mutationMean;
@@ -32,6 +33,7 @@ public class CoreSettings : ModSettings, ICloneable
         humanMode = false;
         omniscientMode = true;
         bestGeneChance = 0.5f;
+        geneValue = 1f;
     }
 
     public override void ExposeData()
@@ -39,6 +41,7 @@ public class CoreSettings : ModSettings, ICloneable
         var defaults = new CoreSettings();
         Scribe_Values.Look(ref stdDev, "stdDev", defaults.stdDev);
         Scribe_Values.Look(ref mean, "mean", defaults.mean);
+        Scribe_Values.Look(ref geneValue, "geneValue", defaults.geneValue);
         Scribe_Values.Look(ref mutationStdDev, "mutationStdDev", defaults.mutationStdDev);
         Scribe_Values.Look(ref mutationMean, "mutationMean", defaults.mutationMean);
         Scribe_Values.Look(ref humanMode, "humanMode", defaults.humanMode);

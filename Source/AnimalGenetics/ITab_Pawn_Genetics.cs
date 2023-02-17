@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -33,9 +34,24 @@ internal class ITab_Pawn_Genetics : ITab
 
         string str =
             (pawn.gender == Gender.None ? "PawnSummary" : "PawnSummaryWithGender").Translate(pawn.Named("PAWN"));
+        var xAddition = 0f;
+        if (DebugSettings.godMode)
+        {
+            xAddition = 17f;
+            var buttonRect = new Rect(15f, 15f, 15f, 15f);
+            TooltipHandler.TipRegion(buttonRect, "AG.RegenerateGenes".Translate());
+            if (Widgets.ButtonImage(buttonRect, PermitsCardUtility.SwitchFactionIcon))
+            {
+                var pawnRecord = pawn.AnimalGenetics();
+                pawnRecord._geneRecords = new Dictionary<StatDef, GeneRecord>();
+                GeneticCalculator.EnsureAllGenesExist(pawnRecord.GeneRecords, pawnRecord.Mother,
+                    pawnRecord.Father);
+            }
+        }
 
         Text.Font = GameFont.Small;
-        Widgets.Label(new Rect(15f, 15f, rect.width * 0.9f, 30f), "AG.GeneticsOf".Translate() + ":  " + pawn.Label);
+        Widgets.Label(new Rect(15f + xAddition, 15f, (rect.width * 0.9f) - xAddition, 30f),
+            "AG.GeneticsOf".Translate() + ":  " + pawn.Label);
         Text.Font = GameFont.Tiny;
         Widgets.Label(new Rect(15f, 35f, rect.width * 0.9f, 30f), str);
         Text.Font = GameFont.Small;

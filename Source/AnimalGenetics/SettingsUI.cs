@@ -126,6 +126,9 @@ internal class SettingsUI
                               (settings.bestGeneChance * 100).ToString("F0"));
         settings.bestGeneChance = listingStandard.Slider(settings.bestGeneChance, 0.0f, 1.0f);
 
+        listingStandard.Label("AnimalGenetics.GeneValue".Translate(settings.geneValue.ToStringPercent()), -1f,
+            "AnimalGenetics.GeneValueToolTip".Translate());
+        settings.geneValue = listingStandard.Slider(settings.geneValue, 0f, 2f);
         listingStandard.End();
 
         DrawGraph(generationGraph, 0, 200, settings.mean * 100, settings.stdDev * 100);

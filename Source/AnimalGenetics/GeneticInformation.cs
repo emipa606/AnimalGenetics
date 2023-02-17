@@ -14,7 +14,7 @@ public class GeneticInformation : ILoadReferenceable, IExposable
 
     private static int _nextLoadId = 1;
 
-    private Dictionary<StatDef, GeneRecord> _geneRecords;
+    public Dictionary<StatDef, GeneRecord> _geneRecords;
 
     private int _loadId;
     public GeneticInformation Father;

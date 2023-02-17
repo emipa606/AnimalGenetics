@@ -6,7 +6,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.4.1</FileVersion>
+    <FileVersion>1.4.3</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
@@ -19,9 +19,9 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <ProjectReference Include="..\AnimalGenetics\AnimalGenetics.csproj">
-	    <CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-	    <CopyLocal>False</CopyLocal>
-	    <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+      <CopyLocal>False</CopyLocal>
+      <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
 </Project>

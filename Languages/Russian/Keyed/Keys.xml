@@ -72,4 +72,7 @@
   <AnimalGenetics.ColonyManager.Description>Когда животные предназначены для укрощения или разделки, используйте AnimalGenetics для выбора животного</AnimalGenetics.ColonyManager.Description>
   <AnimalGenetics.ColonyManager.TamingTooltip>Использование генных предпочтений для определения животных, которых следует приручить</AnimalGenetics.ColonyManager.TamingTooltip>
   <AnimalGenetics.ColonyManager.ButcheringTooltip>Используйте генные предпочтения для определения животных, которых НЕ следует забивать</AnimalGenetics.ColonyManager.ButcheringTooltip>
+  <AG.RegenerateGenes>Регенерировать гены на основе текущих игровых настроек</AG.RegenerateGenes>
+  <AnimalGenetics.GeneValue>Эффект значения гена: {0}</AnimalGenetics.GeneValue>
+  <AnimalGenetics.GeneValueToolTip>100% означает, что значение будет изменяться линейно от процента генов. Они рассчитываются аддитивно, поэтому два гена с 115% получат увеличение значения на 30%. Этот параметр можно использовать для изменения значения каждого процента. Так, если установить это значение на 50%, то в предыдущем примере это приведет к увеличению значения на 15%.</AnimalGenetics.GeneValueToolTip>
 </LanguageData>
