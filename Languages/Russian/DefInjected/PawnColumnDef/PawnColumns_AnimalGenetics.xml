@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <AnimalGenetics_HealthGene.label>Здоровье</AnimalGenetics_HealthGene.label>
-  <AnimalGenetics_DamageGene.label>Дамаг</AnimalGenetics_DamageGene.label>
-  <AnimalGenetics_SpeedGene.label>Скорость</AnimalGenetics_SpeedGene.label>
-  <AnimalGenetics_CapacityGene.label>Вместимость</AnimalGenetics_CapacityGene.label>
-  <AnimalGenetics_MeatGene.label>Мясо</AnimalGenetics_MeatGene.label>
-  <AnimalGenetics_LeatherGene.label>Кожа</AnimalGenetics_LeatherGene.label>
-  <AnimalGenetics_GatherYieldGene.label>Молоко /\nшерсть</AnimalGenetics_GatherYieldGene.label>
+  <AnimalGenetics_HealthGene.label>здоровье</AnimalGenetics_HealthGene.label>
+  <AnimalGenetics_DamageGene.label>урон</AnimalGenetics_DamageGene.label>
+  <AnimalGenetics_SpeedGene.label>скорость</AnimalGenetics_SpeedGene.label>
+  <AnimalGenetics_CapacityGene.label>выносливость</AnimalGenetics_CapacityGene.label>
+  <AnimalGenetics_MeatGene.label>мясо</AnimalGenetics_MeatGene.label>
+  <AnimalGenetics_LeatherGene.label>кожа</AnimalGenetics_LeatherGene.label>
+  <AnimalGenetics_GatherYieldGene.label>молоко/шерсть</AnimalGenetics_GatherYieldGene.label>
 </LanguageData>
