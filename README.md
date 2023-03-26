@@ -95,4 +95,4 @@ Please leave a comment here if you find any issues or have any suggestions for t
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2830943477]Last updated 2023-02-17
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2830943477]Last updated 2023-03-26

@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.4.4 - Updated russian translation, thanks tzverg
+
+
 1.4.3 - Added gene-value option and godmode regenerate genes button.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 
