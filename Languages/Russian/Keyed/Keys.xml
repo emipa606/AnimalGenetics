@@ -4,75 +4,77 @@
   <AG.Genetics>Генетика</AG.Genetics>
   <!-- Gene names -->
   <AG.Health>Здоровье</AG.Health>
-  <AG.Damage>Дамаг</AG.Damage>
+  <AG.Damage>Урон</AG.Damage>
   <AG.Speed>Скорость</AG.Speed>
-  <AG.Capacity>Вместимость</AG.Capacity>
+  <AG.Capacity>Выносливость</AG.Capacity>
   <AG.Meat>Мясо</AG.Meat>
   <AG.Leather>Кожа</AG.Leather>
-  <AG.GatherYield>Молоко / шерсть</AG.GatherYield>
+  <AG.GatherYield>Молоко/Шерсть</AG.GatherYield>
   <!-- Gene Descriptions -->
-  <AG.DamageDesc>Melee attack damage.</AG.DamageDesc>
-  <AG.HealthDesc>Body part health.</AG.HealthDesc>
-  <AG.SpeedDesc>Movement speed.</AG.SpeedDesc>
-  <AG.CapacityDesc>Caravan and carry capacity.</AG.CapacityDesc>
-  <AG.GatherYieldDesc>The amount of milk or wool yielded from this creature.</AG.GatherYieldDesc>
+  <AG.HealthDesc>Обобщённый показатель очков здоровья всех частей тела пешки.</AG.HealthDesc>
+  <AG.DamageDesc>Обобщённый показатель урона, наносимый пешкой в ближнем бою.</AG.DamageDesc>
+  <AG.SpeedDesc>Обобщённый показатель скорости передвижения пешки.</AG.SpeedDesc>
+  <AG.CapacityDesc>Обобщённый показатель грузоподъёмности пешки в обычном режиме и в режиме каравана.</AG.CapacityDesc>
+  <AG.MeatDesc>Показатель объёма мяса пешки.</AG.MeatDesc>
+  <AG.LeatherDesc>Показатель объёма кожи пешки.</AG.LeatherDesc>
+  <AG.GatherYieldDesc>Показатель объёма производимого пешкой молока/шерсти.</AG.GatherYieldDesc>
   <!-- Labels and Buttons -->
   <!-- Care should be taken with string length here. Long ones could go display over the checkbox, for example. -->
-  <AG.None>None</AG.None>
-  <AG.Asc>Asc</AG.Asc>
-  <AG.Desc>Desc</AG.Desc>
-  <AG.PrimarySort>Grouping</AG.PrimarySort>
+  <AG.None>Нет</AG.None>
+  <AG.Asc>Вверх</AG.Asc>
+  <AG.Desc>Вниз</AG.Desc>
+  <AG.PrimarySort>Группировка</AG.PrimarySort>
   <!-- Note the newline (\n) -->
-  <AG.Search>Search</AG.Search>
-  <AG.Animals>Animals</AG.Animals>
-  <AG.Humanlikes>Humanlikes</AG.Humanlikes>
-  <AG.Colony>Colony</AG.Colony>
-  <AG.Wild>Wild</AG.Wild>
-  <AG.OtherFactions>Other Factions</AG.OtherFactions>
-  <AG.DefaultSettings>Default Settings</AG.DefaultSettings>
+  <AG.Search>Поиск</AG.Search>
+  <AG.Animals>Животные</AG.Animals>
+  <AG.Humanlikes>Человекоиды</AG.Humanlikes>
+  <AG.Colony>Колония</AG.Colony>
+  <AG.Wild>Дикий</AG.Wild>
+  <AG.OtherFactions>Иные Фракции</AG.OtherFactions>
+  <AG.DefaultSettings>По Умолчанию</AG.DefaultSettings>
   <!-- Pawn Genetics Tab -->
-  <AG.GeneticsOf>Genetics of</AG.GeneticsOf>
-  <AG.Value>Value</AG.Value>
-  <AG.Parent>Parent</AG.Parent>
-  <AG.ValueTooltop>Gene value. Applied to animal's base stats.</AG.ValueTooltop>
-  <AG.ParentTooltop>The parental value this animal inherited from. Will be empty for wild or newly generated animals with no parents.</AG.ParentTooltop>
+  <AG.GeneticsOf>Генетика</AG.GeneticsOf>
+  <AG.Value>Значение</AG.Value>
+  <AG.Parent>Родитель</AG.Parent>
+  <AG.ValueTooltop>Значение параметра. Применяется к базовым показателям гена пешки.</AG.ValueTooltop>
+  <AG.ParentTooltop>Значение параметра родителя, от которого его унаследовала пешка. Будет пустым для диких или безродных животных.</AG.ParentTooltop>
   <!-- Mod Settings menu -->
-  <AG.Mean>Mean</AG.Mean>
-  <AG.StandardDeviation>Standard Deviation</AG.StandardDeviation>
-  <AG.Settings1>Genetic range for new animals</AG.Settings1>
-  <AG.Settings1Tooltip>Randomly selected from a normal distribution with these settings...</AG.Settings1Tooltip>
-  <AG.Settings2>Inherited gene mutation factor</AG.Settings2>
-  <AG.Settings2Tooltip>Added/subtracted from inherited genes. Randomly selected from a normal distribution with these settings...</AG.Settings2Tooltip>
-  <AG.ColorMode>Color Mode</AG.ColorMode>
-  <AG.ColorNormal>Normal</AG.ColorNormal>
-  <AG.ColorNormalTooltip>Traditional red, yellow, green color scheme.</AG.ColorNormalTooltip>
-  <AG.ColorRPG>RPG</AG.ColorRPG>
-  <AG.ColorRPGTooltip>RPG style item quality color scheme.</AG.ColorRPGTooltip>
-  <AG.HumanlikeGenes>Apply Genes to Humanlikes</AG.HumanlikeGenes>
-  <AG.HumanlikeGenesTooltip>Gives genes to all humanlike pawns as well as animals.</AG.HumanlikeGenesTooltip>
-  <AG.Omniscient>Genes visible on all animals</AG.Omniscient>
-  <AG.OmniscientTooltip>When disabled, you will only be able to see genetic details of your own colony's animals.</AG.OmniscientTooltip>
+  <AG.Mean>Среднее Значение</AG.Mean>
+  <AG.StandardDeviation>Стандартное Отклонение</AG.StandardDeviation>
+  <AG.Settings1>Генетический диапазон для новых животных</AG.Settings1>
+  <AG.Settings1Tooltip>Случайный выбор из нормального распределения с такими параметрами...</AG.Settings1Tooltip>
+  <AG.Settings2>Наследственный фактор мутации генов</AG.Settings2>
+  <AG.Settings2Tooltip>Добавляется/вычитается из унаследованных генов. Случайный выбор из нормального распределения с такими настройками...</AG.Settings2Tooltip>
+  <AG.ColorMode>Цветовая Гамма</AG.ColorMode>
+  <AG.ColorNormal>Традиционная</AG.ColorNormal>
+  <AG.ColorNormalTooltip>Традиционная красная, желтая, зеленая цветовая гамма.</AG.ColorNormalTooltip>
+  <AG.ColorRPG>РПГ</AG.ColorRPG>
+  <AG.ColorRPGTooltip>Качественная цветовая гамма предметов в стиле RPG.</AG.ColorRPGTooltip>
+  <AG.HumanlikeGenes>Генетика антропоморфов</AG.HumanlikeGenes>
+  <AG.HumanlikeGenesTooltip>Применяет гены ко всем человекоподобным пешкам также как к животным.</AG.HumanlikeGenesTooltip>
+  <AG.Omniscient>Гены, видимые у всех животных</AG.Omniscient>
+  <AG.OmniscientTooltip>Если эта функция отключена, вы сможете видеть генетические данные только животных вашей собственной колонии.</AG.OmniscientTooltip>
   <!--The following translations were generated by https://www.deepl.com/-->
   <AnimalGenetics.Mother>Мать</AnimalGenetics.Mother>
   <AnimalGenetics.Father>Отец</AnimalGenetics.Father>
-  <AnimalGenetics.ShowGenesInAnimalsTab>Показать гены на вкладке "Животные</AnimalGenetics.ShowGenesInAnimalsTab>
-  <AnimalGenetics.ShowGenesInAnimalsTabTooltip>Включите, чтобы показать гены на вкладке "Животные".</AnimalGenetics.ShowGenesInAnimalsTabTooltip>
-  <AnimalGenetics.ShowGenesInWildlifeTab>Показать гены на вкладке "Живая природа</AnimalGenetics.ShowGenesInWildlifeTab>
-  <AnimalGenetics.ShowGenesInWildlifeTabTooltip>Включите, чтобы показать гены на вкладке "Живая природа".</AnimalGenetics.ShowGenesInWildlifeTabTooltip>
-  <AnimalGenetics.ShowBothParentsInPawnTab>Показать обоих родителей на вкладке "Залог</AnimalGenetics.ShowBothParentsInPawnTab>
-  <AnimalGenetics.ShowBothParentsInPawnTabTooltip>Разрешить показывать обоих родителей на вкладке Пешка</AnimalGenetics.ShowBothParentsInPawnTabTooltip>
-  <AnimalGenetics.ChanceInheritBestGene>Унаследовать лучшие генные шансы</AnimalGenetics.ChanceInheritBestGene>
-  <AnimalGenetics.NeedsRestart>Требуется перезапуск</AnimalGenetics.NeedsRestart>
-  <AnimalGenetics.ShowGeneticsTab>Вкладка "Показать генетику</AnimalGenetics.ShowGeneticsTab>
-  <AnimalGenetics.ShowGeneticsTabTooltip>Включить отображение вкладки "Генетика</AnimalGenetics.ShowGeneticsTabTooltip>
-  <AnimalGenetics.ColonyManager.IntegrateTooltip>Проверьте, чтобы использовать Генетику животных и Менеджер колоний вместе</AnimalGenetics.ColonyManager.IntegrateTooltip>
+  <AnimalGenetics.ShowGenesInAnimalsTab>Показать гены на вкладке "Животные"</AnimalGenetics.ShowGenesInAnimalsTab>
+  <AnimalGenetics.ShowGenesInAnimalsTabTooltip>Включите, чтобы показать гены на вкладке "Питомцы".</AnimalGenetics.ShowGenesInAnimalsTabTooltip>
+  <AnimalGenetics.ShowGenesInWildlifeTab>Показать гены на вкладке "Фауна"</AnimalGenetics.ShowGenesInWildlifeTab>
+  <AnimalGenetics.ShowGenesInWildlifeTabTooltip>Включите, чтобы показать гены на вкладке "Фауна".</AnimalGenetics.ShowGenesInWildlifeTabTooltip>
+  <AnimalGenetics.ShowBothParentsInPawnTab>Показать обоих родителей на вкладке "Социум"</AnimalGenetics.ShowBothParentsInPawnTab>
+  <AnimalGenetics.ShowBothParentsInPawnTabTooltip>Разрешить показывать обоих родителей на вкладке "Социум"</AnimalGenetics.ShowBothParentsInPawnTabTooltip>
+  <AnimalGenetics.ChanceInheritBestGene>Наследование лучших генов</AnimalGenetics.ChanceInheritBestGene>
+  <AnimalGenetics.NeedsRestart>Требуется Перезапуск</AnimalGenetics.NeedsRestart>
+  <AnimalGenetics.ShowGeneticsTab>Отобразить вкладку "Генетика"</AnimalGenetics.ShowGeneticsTab>
+  <AnimalGenetics.ShowGeneticsTabTooltip>Включить отображение вкладки "Генетика"</AnimalGenetics.ShowGeneticsTabTooltip>
   <AnimalGenetics.ColonyManager.UseWith>Используйте с...</AnimalGenetics.ColonyManager.UseWith>
   <AnimalGenetics.ColonyManager.GeneImportance>Важность генов</AnimalGenetics.ColonyManager.GeneImportance>
-  <AnimalGenetics.ColonyManager.Integrate>Интеграция с менеджером колоний</AnimalGenetics.ColonyManager.Integrate>
+  <AnimalGenetics.ColonyManager.Integrate>Интеграция с ColonyManager</AnimalGenetics.ColonyManager.Integrate>
+  <AnimalGenetics.ColonyManager.IntegrateTooltip>Интеграция с модификацией ColonyManager</AnimalGenetics.ColonyManager.IntegrateTooltip>
   <AnimalGenetics.ColonyManager.Description>Когда животные предназначены для укрощения или разделки, используйте AnimalGenetics для выбора животного</AnimalGenetics.ColonyManager.Description>
   <AnimalGenetics.ColonyManager.TamingTooltip>Использование генных предпочтений для определения животных, которых следует приручить</AnimalGenetics.ColonyManager.TamingTooltip>
   <AnimalGenetics.ColonyManager.ButcheringTooltip>Используйте генные предпочтения для определения животных, которых НЕ следует забивать</AnimalGenetics.ColonyManager.ButcheringTooltip>
   <AG.RegenerateGenes>Регенерировать гены на основе текущих игровых настроек</AG.RegenerateGenes>
   <AnimalGenetics.GeneValue>Эффект значения гена: {0}</AnimalGenetics.GeneValue>
-  <AnimalGenetics.GeneValueToolTip>100% означает, что значение будет изменяться линейно от процента генов. Они рассчитываются аддитивно, поэтому два гена с 115% получат увеличение значения на 30%. Этот параметр можно использовать для изменения значения каждого процента. Так, если установить это значение на 50%, то в предыдущем примере это приведет к увеличению значения на 15%.</AnimalGenetics.GeneValueToolTip>
+  <AnimalGenetics.GeneValueToolTip>100% означает, что значение будет изменяться линейно от процента генов. Они рассчитываются аддитивно, поэтому два гена с 115% получат увеличение значения на 30% (130%). Этот параметр можно использовать для изменения значения каждого процента. Потому, если установить это значение на 50%, то в предыдущем примере это приведет к увеличению значения на 15% (115%).</AnimalGenetics.GeneValueToolTip>
 </LanguageData>
