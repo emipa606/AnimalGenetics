@@ -10,7 +10,7 @@
   <AG.Capacity>Capacity</AG.Capacity>
   <AG.Meat>Meat</AG.Meat>
   <AG.Leather>Leather</AG.Leather>
-  <AG.GatherYield>Milk / Wool</AG.GatherYield>
+  <AG.GatherYield>Resource-yield</AG.GatherYield>
   <!-- Gene Descriptions -->
   <AG.DamageDesc>Melee attack damage.</AG.DamageDesc>
   <AG.HealthDesc>Body part health.</AG.HealthDesc>

@@ -62,23 +62,14 @@ public static class AnimalGeneticsAssemblyLoader
         {
             ColonyManagerLoaded = ModLister.GetActiveModWithIdentifier("Fluffy.ColonyManager") != null;
 
-            if (LoadedModManager.RunningModsListForReading.Any(x =>
-                    x.PackageId == "sarg.alphaanimals" || x.Name == "Alpha Animals"))
+            if (ModLister.GetActiveModWithIdentifier("CETeam.CombatExtended") != null)
             {
-                Log.Message("Animal Genetics : Alpha Animals is loaded - Patching");
-                h.Patch(
-                    AccessTools.Method(AccessTools.TypeByName("AlphaBehavioursAndEvents.CompAnimalProduct"),
-                        "get_ResourceAmount"),
-                    postfix: new HarmonyMethod(typeof(CompatibilityPatches),
-                        nameof(CompatibilityPatches.AlphaAnimals_get_ResourceAmount_Patch)));
-                gatherableTypes.Add(AccessTools.TypeByName("AlphaBehavioursAndEvents.CompAnimalProduct"));
+                gatherableTypes.Add(AccessTools.TypeByName("CombatExtended.CompShearableRenameable"));
             }
 
-            if (LoadedModManager.RunningModsListForReading.Any(x =>
-                    x.PackageId == "CETeam.CombatExtended" || x.Name == "Combat Extended"))
+            if (ModLister.GetActiveModWithIdentifier("OskarPotocki.VanillaFactionsExpanded.Core") != null)
             {
-                //gatherableTypes.Append(AccessTools.TypeByName("CombatExtended.CompMilkableRenameable")); //they all use shearable
-                gatherableTypes.Add(AccessTools.TypeByName("CombatExtended.CompShearableRenameable"));
+                gatherableTypes.Add(AccessTools.TypeByName("AnimalBehaviours.CompAnimalProduct"));
             }
 
             if (LoadedModManager.RunningModsListForReading.Any(x => x.PackageId == "rim.job.world"))

@@ -52,21 +52,11 @@ public static class Constants
 
     public static string GetLabel(StatDef stat)
     {
-        if (!_labelOverrides.ContainsKey(stat))
-        {
-            return stat.label;
-        }
-
-        return _labelOverrides[stat];
+        return !_labelOverrides.ContainsKey(stat) ? stat.label : _labelOverrides[stat];
     }
 
     public static string GetDescription(StatDef stat)
     {
-        if (!_descriptionOverrides.ContainsKey(stat))
-        {
-            return stat.description;
-        }
-
-        return _descriptionOverrides[stat];
+        return !_descriptionOverrides.ContainsKey(stat) ? stat.description : _descriptionOverrides[stat];
     }
 }
