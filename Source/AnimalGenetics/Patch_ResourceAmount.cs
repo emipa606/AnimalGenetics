@@ -23,7 +23,7 @@ public static class Patch_ResourceAmount
         yield return AccessTools.Method("AnimalBehaviours.CompAnimalProduct:get_ResourceAmount");
     }
 
-    public static void Postfix(ref int __result, CompMilkable __instance)
+    public static void Postfix(ref int __result, CompHasGatherableBodyResource __instance)
     {
         if (!Genes.EffectsThing(__instance.parent))
         {

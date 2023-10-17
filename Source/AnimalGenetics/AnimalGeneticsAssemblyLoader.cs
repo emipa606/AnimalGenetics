@@ -54,7 +54,8 @@ public static class AnimalGeneticsAssemblyLoader
         gatherableTypes = new List<Type>
         {
             typeof(CompShearable),
-            typeof(CompMilkable)
+            typeof(CompMilkable),
+            typeof(CompEggLayer)
         };
 
         // Compatibility patches

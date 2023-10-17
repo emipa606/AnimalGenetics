@@ -16,7 +16,7 @@
   <AG.HealthDesc>Body part health.</AG.HealthDesc>
   <AG.SpeedDesc>Movement speed.</AG.SpeedDesc>
   <AG.CapacityDesc>Caravan and carry capacity.</AG.CapacityDesc>
-  <AG.GatherYieldDesc>The amount of milk or wool yielded from this creature.</AG.GatherYieldDesc>
+  <AG.GatherYieldDesc>The amount of milk, wool, eggs yielded from this creature as well as the egg-laying speed.</AG.GatherYieldDesc>
   <!-- Labels and Buttons -->
   <!-- Care should be taken with string length here. Long ones could go display over the checkbox, for example. -->
   <AG.None>None</AG.None>

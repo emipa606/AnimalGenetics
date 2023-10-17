@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.4.6 - Resource yield should now affect egglaying speed as well as the amount of eggs layed
+
+
 1.4.5 - Added support for resource-yield in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url]
 
 
