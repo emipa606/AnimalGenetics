@@ -29,7 +29,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
     static MainTabWindow_AnimalGenetics()
     {
         _DoTextField = typeof(GUI).GetTypeInfo().GetMethod("DoTextField", BindingFlags.NonPublic | BindingFlags.Static,
-            null, new[] { typeof(Rect), typeof(int), typeof(GUIContent), typeof(bool), typeof(int), typeof(GUIStyle) },
+            null, [typeof(Rect), typeof(int), typeof(GUIContent), typeof(bool), typeof(int), typeof(GUIStyle)],
             null);
     }
 
@@ -71,7 +71,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         }
 
         var guicontent = new GUIContent(text);
-        _DoTextField.Invoke(null, new object[] { position, id, guicontent, false, -1, GUI.skin.textField });
+        _DoTextField.Invoke(null, [position, id, guicontent, false, -1, GUI.skin.textField]);
         return guicontent.text;
     }
 

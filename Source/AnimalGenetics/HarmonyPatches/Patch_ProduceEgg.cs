@@ -1,8 +1,9 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace AnimalGenetics.Assembly;
+namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompEggLayer), nameof(CompEggLayer.ProduceEgg))]
 public static class Patch_ProduceEgg
@@ -15,6 +16,6 @@ public static class Patch_ProduceEgg
         }
 
         __result.stackCount =
-            (int)(__result.stackCount * Genes.GetGene((Pawn)__instance.parent, AnimalGenetics.GatherYield));
+            (int)Math.Max(__result.stackCount * Genes.GetGene((Pawn)__instance.parent, AnimalGenetics.GatherYield), 1f);
     }
 }

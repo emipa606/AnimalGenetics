@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace AnimalGenetics.Assembly;
+namespace AnimalGenetics.HarmonyPatches;
 
 public static class CompatibilityPatches
 {

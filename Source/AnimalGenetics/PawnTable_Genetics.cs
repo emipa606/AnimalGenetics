@@ -6,13 +6,9 @@ using Verse;
 
 namespace AnimalGenetics;
 
-public class PawnTable_Genetics : PawnTable
+public class PawnTable_Genetics(PawnTableDef def, Func<IEnumerable<Pawn>> pawnsGetter, int uiWidth, int uiHeight)
+    : PawnTable(def, pawnsGetter, uiWidth, uiHeight)
 {
-    public PawnTable_Genetics(PawnTableDef def, Func<IEnumerable<Pawn>> pawnsGetter, int uiWidth, int uiHeight) : base(
-        def, pawnsGetter, uiWidth, uiHeight)
-    {
-    }
-
     public override IEnumerable<Pawn> PrimarySortFunction(IEnumerable<Pawn> input)
     {
         switch (Settings.UI.sortMode)

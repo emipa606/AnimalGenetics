@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace AnimalGenetics.Assembly;
+namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch]
 public static class Patch_ResourceAmount
@@ -30,6 +31,6 @@ public static class Patch_ResourceAmount
             return;
         }
 
-        __result = (int)(__result * Genes.GetGene((Pawn)__instance.parent, AnimalGenetics.GatherYield));
+        __result = (int)Math.Max(__result * Genes.GetGene((Pawn)__instance.parent, AnimalGenetics.GatherYield), 1f);
     }
 }

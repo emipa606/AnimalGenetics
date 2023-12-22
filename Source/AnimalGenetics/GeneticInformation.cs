@@ -7,7 +7,7 @@ namespace AnimalGenetics;
 
 public class GeneticInformation : ILoadReferenceable, IExposable
 {
-    private static List<WeakReference<GeneticInformation>> _instances = new List<WeakReference<GeneticInformation>>();
+    private static List<WeakReference<GeneticInformation>> _instances = [];
 
     private static readonly Dictionary<GeneticInformation, Dictionary<StatDef, GeneRecord>> BackwardCompatibleData =
         new Dictionary<GeneticInformation, Dictionary<StatDef, GeneRecord>>();

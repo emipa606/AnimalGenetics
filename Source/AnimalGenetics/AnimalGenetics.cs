@@ -5,7 +5,7 @@ using AnimalGeneticsSettings = AnimalGenetics.Settings;
 
 namespace AnimalGenetics;
 
-public class AnimalGenetics : WorldComponent
+public class AnimalGenetics(World world) : WorldComponent(world)
 {
     public static StatDef GatherYield = new StatDef
         { defName = "GatherYield", description = "AG.GatherYieldDesc".Translate(), alwaysHide = true };
@@ -16,12 +16,7 @@ public class AnimalGenetics : WorldComponent
     public static StatDef Health = new StatDef
         { defName = "Health", description = "AG.HealthDesc".Translate(), alwaysHide = true };
 
-    public readonly CoreSettings Settings;
-
-    public AnimalGenetics(World world) : base(world)
-    {
-        Settings = (CoreSettings)AnimalGeneticsSettings.InitialCore.Clone();
-    }
+    public readonly CoreSettings Settings = (CoreSettings)AnimalGeneticsSettings.InitialCore.Clone();
 
     public override void ExposeData()
     {

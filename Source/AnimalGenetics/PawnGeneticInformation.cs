@@ -1,5 +1,3 @@
 ﻿namespace AnimalGenetics;
 
-public class PawnGeneticInformation : BaseGeneticInformation
-{
-}
+public class PawnGeneticInformation : BaseGeneticInformation;

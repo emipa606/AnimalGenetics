@@ -5,6 +5,8 @@
 Update of gregorycurries mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2226725974
 
+- Resource yield should now affect egglaying speed as well as the amount of eggs layed
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	

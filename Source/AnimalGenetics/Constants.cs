@@ -7,8 +7,8 @@ namespace AnimalGenetics;
 public static class Constants
 {
     // order here dictates order displayed in game.
-    public static List<StatDef> affectedStats = new List<StatDef>
-    {
+    public static List<StatDef> affectedStats =
+    [
         AnimalGenetics.Health,
         AnimalGenetics.Damage,
         StatDefOf.MoveSpeed,
@@ -16,15 +16,15 @@ public static class Constants
         StatDefOf.MeatAmount,
         StatDefOf.LeatherAmount,
         AnimalGenetics.GatherYield
-    };
+    ];
 
-    public static List<StatDef> affectedStatsToInsert = new List<StatDef>
-    {
+    public static List<StatDef> affectedStatsToInsert =
+    [
         StatDefOf.MoveSpeed,
         StatDefOf.LeatherAmount,
         StatDefOf.MeatAmount,
         StatDefOf.CarryingCapacity
-    };
+    ];
 
     private static readonly Dictionary<StatDef, string> _labelOverrides = new Dictionary<StatDef, string>
     {

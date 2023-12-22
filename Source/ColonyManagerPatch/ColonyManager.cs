@@ -15,7 +15,7 @@ namespace AnimalGenetics;
 public class ColonyManager
 {
     private static List<KeyValuePair<Verse.WeakReference<object>, Data>> _managerJobToData =
-        new List<KeyValuePair<Verse.WeakReference<object>, Data>>();
+        [];
 
     private static readonly MethodInfo _ManagerTab_Livestock_DrawTamingSection;
     private static readonly MethodInfo _Widgets_Section_Section;
@@ -329,15 +329,10 @@ public class ColonyManager
         }
     }
 
-    private class JobsWrapper
+    private class JobsWrapper(object instance)
     {
         private static MethodInfo _tryRemoveDesignationMethod;
-        private readonly ManagerJob_Livestock _self;
-
-        public JobsWrapper(object instance)
-        {
-            _self = (ManagerJob_Livestock)instance;
-        }
+        private readonly ManagerJob_Livestock _self = (ManagerJob_Livestock)instance;
 
         private bool ButcherExcess => _self.ButcherExcess;
         private bool ButcherTrained => _self.ButcherTrained;
@@ -375,7 +370,7 @@ public class ColonyManager
 
         private bool TryRemoveDesignation(AgeAndSex ageSex, DesignationDef def)
         {
-            return (bool)_tryRemoveDesignationMethod.Invoke(_self, new object[] { ageSex, def });
+            return (bool)_tryRemoveDesignationMethod.Invoke(_self, [ageSex, def]);
         }
 
         private List<Designation> DesignationsOfOn(

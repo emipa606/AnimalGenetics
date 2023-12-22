@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace AnimalGenetics.Assembly;
+namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompEggLayer), nameof(CompEggLayer.CompTick))]
 public static class Patch_CompTick

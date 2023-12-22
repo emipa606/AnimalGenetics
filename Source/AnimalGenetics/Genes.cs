@@ -1,4 +1,4 @@
-﻿using AnimalGenetics.Assembly;
+﻿using AnimalGenetics.HarmonyPatches;
 using RimWorld;
 using Verse;
 

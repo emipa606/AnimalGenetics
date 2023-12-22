@@ -1,5 +1,5 @@
 ﻿using System;
-using AnimalGenetics.Assembly;
+using AnimalGenetics.HarmonyPatches;
 using UnityEngine;
 using Verse;
 

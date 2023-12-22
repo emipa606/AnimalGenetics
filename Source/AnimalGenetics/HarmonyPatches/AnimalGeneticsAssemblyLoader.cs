@@ -4,7 +4,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace AnimalGenetics.Assembly;
+namespace AnimalGenetics.HarmonyPatches;
 
 [StaticConstructorOnStartup]
 public static class AnimalGeneticsAssemblyLoader
@@ -44,19 +44,23 @@ public static class AnimalGeneticsAssemblyLoader
         {
             DefDatabase<StatDef>.Add(new StatDefWrapper
             {
-                defName = $"AnimalGenetics_{stat.defName}", label = Constants.GetLabel(stat), Underlying = stat,
-                category = category, workerClass = typeof(StatWorker), toStringStyle = ToStringStyle.PercentZero
+                defName = $"AnimalGenetics_{stat.defName}",
+                label = Constants.GetLabel(stat),
+                Underlying = stat,
+                category = category,
+                workerClass = typeof(StatWorker),
+                toStringStyle = ToStringStyle.PercentZero
             });
         }
 
         StatDefOf.MarketValue.parts.Add(new MarketValueCalculator());
 
-        gatherableTypes = new List<Type>
-        {
+        gatherableTypes =
+        [
             typeof(CompShearable),
             typeof(CompMilkable),
             typeof(CompEggLayer)
-        };
+        ];
 
         // Compatibility patches
         try
@@ -88,8 +92,8 @@ public static class AnimalGeneticsAssemblyLoader
             // ignored
         }
 
-        _DefaultAnimalsPawnTableDefColumns = new List<PawnColumnDef>(PawnTableDefOf.Animals.columns);
-        _DefaultWildlifePawnTableDefColumns = new List<PawnColumnDef>(PawnTableDefOf.Wildlife.columns);
+        _DefaultAnimalsPawnTableDefColumns = [..PawnTableDefOf.Animals.columns];
+        _DefaultWildlifePawnTableDefColumns = [..PawnTableDefOf.Wildlife.columns];
 
         var placeholderPosition =
             MainTabWindow_AnimalGenetics.PawnTableDefs.Genetics.columns.FindIndex(def =>
@@ -105,7 +109,7 @@ public static class AnimalGeneticsAssemblyLoader
     {
         if (PatchState.PatchedGenesInAnimalsTab != Settings.UI.showGenesInAnimalsTab)
         {
-            PawnTableDefOf.Animals.columns = new List<PawnColumnDef>(_DefaultAnimalsPawnTableDefColumns);
+            PawnTableDefOf.Animals.columns = [.._DefaultAnimalsPawnTableDefColumns];
             if (Settings.UI.showGenesInAnimalsTab)
             {
                 PawnTableDefOf.Animals.columns.AddRange(PawnTableColumnsDefOf.Genetics.columns);
@@ -116,7 +120,7 @@ public static class AnimalGeneticsAssemblyLoader
 
         if (PatchState.PatchedGenesInWildlifeTab != Settings.UI.showGenesInWildlifeTab)
         {
-            PawnTableDefOf.Wildlife.columns = new List<PawnColumnDef>(_DefaultWildlifePawnTableDefColumns);
+            PawnTableDefOf.Wildlife.columns = [.._DefaultWildlifePawnTableDefColumns];
             if (Settings.UI.showGenesInWildlifeTab)
             {
                 PawnTableDefOf.Wildlife.columns.AddRange(PawnTableColumnsDefOf.Genetics.columns);
