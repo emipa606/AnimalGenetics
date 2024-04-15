@@ -172,12 +172,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
             return true;
         }
 
-        if (current.ShowOther && p.Faction != Faction.OfPlayer && p.Faction != null)
-        {
-            return true;
-        }
-
-        return false;
+        return current.ShowOther && p.Faction != Faction.OfPlayer && p.Faction != null;
     }
 
     private bool VisibleSpecies(Pawn p)
@@ -187,12 +182,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
             return true;
         }
 
-        if (current.ShowHumans && p.RaceProps.Humanlike)
-        {
-            return true;
-        }
-
-        return false;
+        return current.ShowHumans && p.RaceProps.Humanlike;
     }
 
     private bool TextFilter(Pawn p)
@@ -202,17 +192,17 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
             return true;
         }
 
-        bool Match(string str)
-        {
-            return str != null && str.IndexOf(current.FilterText, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
-
         if (p.Name != null && Match(p.Name.ToStringFull))
         {
             return true;
         }
 
         return Match(p.KindLabel) || Match(p.def.label);
+
+        bool Match(string str)
+        {
+            return str != null && str.IndexOf(current.FilterText, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
     }
 
     private struct Options

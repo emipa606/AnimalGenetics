@@ -29,7 +29,7 @@ public class StatPart : RimWorld.StatPart
             return null;
         }
 
-        if (!(req.Thing is Pawn pawn))
+        if (req.Thing is not Pawn pawn)
         {
             return "";
         }

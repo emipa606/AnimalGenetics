@@ -44,27 +44,11 @@ internal class SettingsUI
             (xMin + ((xMax - xMin) / 2)).ToString());
         Widgets.Label(new Rect(width - 40, height - 20, 40, 20), xMax.ToString());
 
-        float Value(float x)
-        {
-            return (float)
-                   (1f / (stddev * Math.Sqrt(2f * Math.PI))) *
-                   (float)Math.Pow(Math.E, -(x - mean) * (x - mean) / (2f * stddev * stddev));
-        }
-
         Widgets.Label(new Rect(0, 0, 40, 20), $"{(int)(100 * Value(mean))}%");
 
         GUI.color = Color.white;
 
         var prev = new Vector2(xMin, Value(xMin));
-
-        void DrawTo(Vector2 next)
-        {
-            Widgets.DrawLine(
-                new Vector2(40 + (hscale * (prev.x - xMin)), -20 + height - (vscale * prev.y)),
-                new Vector2(40 + (hscale * (next.x - xMin)), -20 + height - (vscale * next.y)),
-                Color.white, 1);
-            prev = next;
-        }
 
         for (var offsetX = -15; offsetX <= 15; ++offsetX)
         {
@@ -82,6 +66,23 @@ internal class SettingsUI
         GUI.EndGroup();
 
         Text.Anchor = TextAnchor.UpperLeft;
+        return;
+
+        float Value(float x)
+        {
+            return (float)
+                   (1f / (stddev * Math.Sqrt(2f * Math.PI))) *
+                   (float)Math.Pow(Math.E, -(x - mean) * (x - mean) / (2f * stddev * stddev));
+        }
+
+        void DrawTo(Vector2 next)
+        {
+            Widgets.DrawLine(
+                new Vector2(40 + (hscale * (prev.x - xMin)), -20 + height - (vscale * prev.y)),
+                new Vector2(40 + (hscale * (next.x - xMin)), -20 + height - (vscale * next.y)),
+                Color.white, 1);
+            prev = next;
+        }
     }
 
     public static void DoSettings(CoreSettings settings, Rect rect)

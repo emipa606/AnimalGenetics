@@ -13,7 +13,7 @@ public static class AnimalGeneticsAssemblyLoader
     private static readonly List<PawnColumnDef> _DefaultWildlifePawnTableDefColumns;
     public static readonly bool ColonyManagerLoaded;
 
-    public static List<Type> gatherableTypes;
+    public static readonly List<Type> gatherableTypes;
 
     static AnimalGeneticsAssemblyLoader()
     {

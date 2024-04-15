@@ -22,12 +22,8 @@ public static class Extensions
     public static GeneRecord GetGeneRecord(this Pawn pawn, StatDef stat)
     {
         var records = pawn.AnimalGenetics()?.GeneRecords;
-        if (records == null)
-        {
-            return null;
-        }
 
-        return !records.ContainsKey(stat) ? null : records[stat];
+        return records?.GetValueOrDefault(stat);
     }
 
     public static IEnumerable<StatDef> GetGenes(this Pawn pawn)

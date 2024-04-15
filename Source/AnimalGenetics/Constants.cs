@@ -7,7 +7,7 @@ namespace AnimalGenetics;
 public static class Constants
 {
     // order here dictates order displayed in game.
-    public static List<StatDef> affectedStats =
+    public static readonly List<StatDef> affectedStats =
     [
         AnimalGenetics.Health,
         AnimalGenetics.Damage,
@@ -18,7 +18,7 @@ public static class Constants
         AnimalGenetics.GatherYield
     ];
 
-    public static List<StatDef> affectedStatsToInsert =
+    public static readonly List<StatDef> affectedStatsToInsert =
     [
         StatDefOf.MoveSpeed,
         StatDefOf.LeatherAmount,
@@ -43,7 +43,7 @@ public static class Constants
         { StatDefOf.CarryingCapacity, "AG.CapacityDesc".Translate() }
     };
 
-    public static Dictionary<int, string> sortMode = new Dictionary<int, string>
+    public static readonly Dictionary<int, string> sortMode = new Dictionary<int, string>
     {
         { 0, "AG.None".Translate() },
         { 1, "AG.Asc".Translate() },
@@ -52,11 +52,11 @@ public static class Constants
 
     public static string GetLabel(StatDef stat)
     {
-        return !_labelOverrides.ContainsKey(stat) ? stat.label : _labelOverrides[stat];
+        return !_labelOverrides.TryGetValue(stat, out var getLabel) ? stat.label : getLabel;
     }
 
     public static string GetDescription(StatDef stat)
     {
-        return !_descriptionOverrides.ContainsKey(stat) ? stat.description : _descriptionOverrides[stat];
+        return !_descriptionOverrides.TryGetValue(stat, out var getDescription) ? stat.description : getDescription;
     }
 }

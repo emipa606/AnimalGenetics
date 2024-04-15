@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.5.0 - Updated for 1.5
+
+
 1.4.7 - Resource yield changes should now never result in yields below 1 as this caused some egg layers to produce no eggs at all
 
 
