@@ -1,4 +1,4 @@
-# AnimalGenetics
+# [Animal Genetics (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2830943477)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -8,7 +8,6 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2226725974
 - Resource yield should now affect egglaying speed as well as the amount of eggs layed
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
@@ -49,11 +48,11 @@ Plays nice with other mods in testing. Should also be safe to remove and add mid
 # Tested With Popular Animal-Related Mods including...
 
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=1541721856]Alpha Animals
+[Alpha Animals](https://steamcommunity.com/sharedfiles/filedetails/?id=1541721856)
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=2026992161]Dragon's Descent
+[Dragon's Descent](https://steamcommunity.com/sharedfiles/filedetails/?id=2026992161)
 
-Recommended to use alongside a mod that adds neutering such as steamcommunity.com/sharedfiles/filedetails/?id=751049133]The Birds and the Bees or steamcommunity.com/sharedfiles/filedetails/?id=1501449584][SYR] Neuter.
+Recommended to use alongside a mod that adds neutering such as [The Birds and the Bees](steamcommunity.com/sharedfiles/filedetails/?id=751049133) or [[SYR] Neuter](steamcommunity.com/sharedfiles/filedetails/?id=1501449584).
 
 # F.A.Q
 
@@ -79,7 +78,7 @@ You cannot currently blacklist animals with this mod. However we are looking int
 
 # Links
 
-https://ludeon.com/forums/index.php?topic=53078.0] Animal Genetics on Ludeon Forums
+[ Animal Genetics on Ludeon Forums](https://ludeon.com/forums/index.php?topic=53078.0)
 
 # Notes
 
@@ -91,13 +90,12 @@ Please leave a comment here if you find any issues or have any suggestions for t
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2830943477]![Image](https://img.shields.io/github/v/release/emipa606/AnimalGenetics?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/AnimalGenetics?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2830943477) | tags:  evolution

@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.5.1 - The genetic window-settings will now be saved correctly
+
+
 1.5.0 - Updated for 1.5
 
 

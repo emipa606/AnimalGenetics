@@ -18,9 +18,22 @@ public class AnimalGenetics(World world) : WorldComponent(world)
 
     public readonly CoreSettings Settings = (CoreSettings)AnimalGeneticsSettings.InitialCore.Clone();
 
+    public string FilterText;
+    public bool ShowAnimals = true;
+    public bool ShowFaction = true;
+    public bool ShowHumans = true;
+    public bool ShowOther = true;
+    public bool ShowWild = true;
+
     public override void ExposeData()
     {
         GeneticInformation.ExposeData();
+        Scribe_Values.Look(ref FilterText, "filterText");
+        Scribe_Values.Look(ref ShowAnimals, "showAnimals", true);
+        Scribe_Values.Look(ref ShowFaction, "showFaction", true);
+        Scribe_Values.Look(ref ShowHumans, "showHumans", true);
+        Scribe_Values.Look(ref ShowOther, "showOther", true);
+        Scribe_Values.Look(ref ShowWild, "showWild", true);
 
         if (!Scribe.EnterNode("settings"))
         {
