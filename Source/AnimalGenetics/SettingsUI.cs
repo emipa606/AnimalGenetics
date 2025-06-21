@@ -7,17 +7,17 @@ namespace AnimalGenetics;
 
 internal class SettingsUI
 {
-    public static void DrawGraph(Rect rect, int xMin, int xMax, float mean, float stddev)
+    private static void drawGraph(Rect rect, int xMin, int xMax, float mean, float standardDeviation)
     {
-        if (stddev < 1f / Math.Sqrt(2f * Math.PI))
+        if (standardDeviation < 1f / Math.Sqrt(2f * Math.PI))
         {
-            stddev = (float)(1f / Math.Sqrt(2f * Math.PI));
+            standardDeviation = (float)(1f / Math.Sqrt(2f * Math.PI));
         }
 
         var height = rect.height;
         var width = rect.width;
 
-        var vscale = (height - 30) / Value(mean);
+        var vscale = (height - 30) / value(mean);
         var hscale = (width - 40 - 20) / (xMax - xMin);
 
         GUI.BeginGroup(rect);
@@ -44,38 +44,38 @@ internal class SettingsUI
             (xMin + ((xMax - xMin) / 2)).ToString());
         Widgets.Label(new Rect(width - 40, height - 20, 40, 20), xMax.ToString());
 
-        Widgets.Label(new Rect(0, 0, 40, 20), $"{(int)(100 * Value(mean))}%");
+        Widgets.Label(new Rect(0, 0, 40, 20), $"{(int)(100 * value(mean))}%");
 
         GUI.color = Color.white;
 
-        var prev = new Vector2(xMin, Value(xMin));
+        var prev = new Vector2(xMin, value(xMin));
 
         for (var offsetX = -15; offsetX <= 15; ++offsetX)
         {
-            var x = mean + (stddev * (offsetX / 5f));
+            var x = mean + (standardDeviation * (offsetX / 5f));
             if (x <= xMin || x >= xMax)
             {
                 continue;
             }
 
-            DrawTo(new Vector2(x, Value(x)));
+            drawTo(new Vector2(x, value(x)));
         }
 
-        DrawTo(new Vector2(xMax, Value(xMax)));
+        drawTo(new Vector2(xMax, value(xMax)));
 
         GUI.EndGroup();
 
         Text.Anchor = TextAnchor.UpperLeft;
         return;
 
-        float Value(float x)
+        float value(float x)
         {
             return (float)
-                   (1f / (stddev * Math.Sqrt(2f * Math.PI))) *
-                   (float)Math.Pow(Math.E, -(x - mean) * (x - mean) / (2f * stddev * stddev));
+                   (1f / (standardDeviation * Math.Sqrt(2f * Math.PI))) *
+                   (float)Math.Pow(Math.E, -(x - mean) * (x - mean) / (2f * standardDeviation * standardDeviation));
         }
 
-        void DrawTo(Vector2 next)
+        void drawTo(Vector2 next)
         {
             Widgets.DrawLine(
                 new Vector2(40 + (hscale * (prev.x - xMin)), -20 + height - (vscale * prev.y)),
@@ -132,8 +132,8 @@ internal class SettingsUI
         settings.geneValue = listingStandard.Slider(settings.geneValue, 0f, 2f);
         listingStandard.End();
 
-        DrawGraph(generationGraph, 0, 200, settings.mean * 100, settings.stdDev * 100);
-        DrawGraph(mutationGraph, -25, 25, settings.mutationMean * 100, settings.mutationStdDev * 100);
+        drawGraph(generationGraph, 0, 200, settings.mean * 100, settings.stdDev * 100);
+        drawGraph(mutationGraph, -25, 25, settings.mutationMean * 100, settings.mutationStdDev * 100);
 
         curY += listingStandard.CurHeight;
 
@@ -157,7 +157,7 @@ internal class SettingsUI
 
     public static void DoSettings(UISettings settings, Rect rect)
     {
-        float curY = 80;
+        const float curY = 80;
 
         var rect2 = new Rect(0, curY, (rect.width / 2) - 10, 250f);
         var listingStandard2 = new Listing_Standard();
@@ -207,7 +207,7 @@ internal class SettingsUI
 
     public static void DoSettings(IntegrationSettings settings, Rect rect)
     {
-        float curY = 80;
+        const float curY = 80;
 
         var rect2 = new Rect(0, curY, (rect.width / 2) - 10, 250f);
         var listingStandard2 = new Listing_Standard();

@@ -10,9 +10,9 @@ public class GeneticInformation : ILoadReferenceable, IExposable
     private static List<WeakReference<GeneticInformation>> _instances = [];
 
     private static readonly Dictionary<GeneticInformation, Dictionary<StatDef, GeneRecord>> BackwardCompatibleData =
-        new Dictionary<GeneticInformation, Dictionary<StatDef, GeneRecord>>();
+        new();
 
-    private static int _nextLoadId = 1;
+    private static int nextLoadId = 1;
 
     public Dictionary<StatDef, GeneRecord> _geneRecords;
 
@@ -31,7 +31,7 @@ public class GeneticInformation : ILoadReferenceable, IExposable
     public GeneticInformation(Dictionary<StatDef, GeneRecord> geneRecords)
     {
         _geneRecords = geneRecords;
-        _loadId = _nextLoadId++;
+        _loadId = nextLoadId++;
         _instances.Add(new WeakReference<GeneticInformation>(this));
     }
 
@@ -49,10 +49,7 @@ public class GeneticInformation : ILoadReferenceable, IExposable
     {
         get
         {
-            if (_geneRecords == null)
-            {
-                _geneRecords = GeneticCalculator.GenerateGenesRecord(Mother, Father);
-            }
+            _geneRecords ??= GeneticCalculator.GenerateGenesRecord(Mother, Father);
 
             return _geneRecords;
         }
@@ -77,7 +74,7 @@ public class GeneticInformation : ILoadReferenceable, IExposable
     {
         if (_loadId == 0)
         {
-            _loadId = _nextLoadId++;
+            _loadId = nextLoadId++;
         }
 
         return _loadId.ToString();
@@ -95,7 +92,7 @@ public class GeneticInformation : ILoadReferenceable, IExposable
 
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
-            _nextLoadId = instances.Count > 0 ? instances.Max(e => e._loadId) + 1 : 1;
+            nextLoadId = instances.Count > 0 ? instances.Max(e => e._loadId) + 1 : 1;
         }
     }
 }

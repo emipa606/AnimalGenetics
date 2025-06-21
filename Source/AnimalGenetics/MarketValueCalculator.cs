@@ -16,12 +16,12 @@ internal class MarketValueCalculator : RimWorld.StatPart
 
         var genes = pawn.GetGenes();
 
-        var factor = genes.Select(Selector).Aggregate(1.0f, (lhs, rhs) => lhs * rhs);
+        var factor = genes.Select(selector).Aggregate(1.0f, (lhs, rhs) => lhs * rhs);
 
         val *= factor * Settings.Core.geneValue;
         return;
 
-        float Selector(StatDef g)
+        float selector(StatDef g)
         {
             return pawn.GetGene(g);
         }

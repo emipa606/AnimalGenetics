@@ -12,7 +12,7 @@ public class CoreMod : Mod
         Settings.InitialCore = GetSettings<CoreSettings>();
     }
 
-    public bool ConfigureInitialSettings => Current.ProgramState == ProgramState.Entry;
+    private static bool ConfigureInitialSettings => Current.ProgramState == ProgramState.Entry;
 
     public override void DoSettingsWindowContents(Rect rect)
     {

@@ -5,7 +5,7 @@ using Verse;
 namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompHatcher), nameof(CompHatcher.Hatch))]
-public static class CompHatcher_Hatch_Patch
+public static class CompHatcher_Hatch
 {
     public static void Prefix(ThingWithComps ___parent, out bool __state)
     {

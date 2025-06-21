@@ -5,7 +5,7 @@ using Verse;
 namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(Hediff_Pregnant), nameof(Hediff_Pregnant.DoBirthSpawn))]
-public static class DoBirthSpawn_Patch
+public static class Hediff_Pregnant_DoBirthSpawn
 {
     public static void Prefix(Pawn mother, Pawn father)
     {

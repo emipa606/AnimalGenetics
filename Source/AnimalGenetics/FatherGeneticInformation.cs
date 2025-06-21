@@ -5,25 +5,25 @@ namespace AnimalGenetics;
 
 public class FatherGeneticInformation : HediffComp
 {
-    private FieldInfo _fatherField;
+    private FieldInfo fatherField;
 
-    private GeneticInformation _geneticInformation;
-    public GeneticInformation GeneticInformation => _geneticInformation;
+    private GeneticInformation geneticInformation;
+    public GeneticInformation GeneticInformation => geneticInformation;
 
     public override void CompPostMake()
     {
-        _fatherField = parent.GetType().GetField("father");
+        fatherField = parent.GetType().GetField("father");
     }
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (_geneticInformation != null || _fatherField == null)
+        if (geneticInformation != null || fatherField == null)
         {
             return;
         }
 
-        var father = _fatherField?.GetValue(parent) as Pawn;
-        _geneticInformation = father?.AnimalGenetics();
+        var father = fatherField?.GetValue(parent) as Pawn;
+        geneticInformation = father?.AnimalGenetics();
     }
 
     public override void CompExposeData()
@@ -35,7 +35,7 @@ public class FatherGeneticInformation : HediffComp
             return;
         }
 
-        Scribe_References.Look(ref _geneticInformation, "fatherGeneRecords");
+        Scribe_References.Look(ref geneticInformation, "fatherGeneRecords");
         Scribe.ExitNode();
     }
 }

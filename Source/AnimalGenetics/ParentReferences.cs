@@ -5,7 +5,7 @@ namespace AnimalGenetics;
 
 public static class ParentReferences
 {
-    private static readonly Stack<Record> Data = new Stack<Record>();
+    private static readonly Stack<Record> Data = new();
 
     public static GeneticInformation ThisGeneticInformation => Data
         .Select(record => record.This).FirstOrDefault(record => record != null);

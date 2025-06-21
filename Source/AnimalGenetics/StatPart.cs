@@ -15,7 +15,7 @@ public class StatPart : RimWorld.StatPart
 
     public override void TransformValue(StatRequest req, ref float val)
     {
-        var factor = GetFactor(req);
+        var factor = getFactor(req);
         if (factor != null)
         {
             val *= (float)factor;
@@ -70,7 +70,7 @@ public class StatPart : RimWorld.StatPart
         return "AG.Genetics".Translate() + ": x" + statRecord.Value.ToStringPercent() + postfix;
     }
 
-    private float? GetFactor(StatRequest req)
+    private float? getFactor(StatRequest req)
     {
         if (!req.HasThing)
         {

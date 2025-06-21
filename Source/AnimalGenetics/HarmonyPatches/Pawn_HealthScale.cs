@@ -3,8 +3,8 @@ using Verse;
 
 namespace AnimalGenetics.HarmonyPatches;
 
-[HarmonyPatch(typeof(Pawn), "get_HealthScale")]
-public static class Pawn_HealthScale_Patch
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.HealthScale), MethodType.Getter)]
+public static class Pawn_HealthScale
 {
     public static void Postfix(ref float __result, ref Pawn __instance)
     {

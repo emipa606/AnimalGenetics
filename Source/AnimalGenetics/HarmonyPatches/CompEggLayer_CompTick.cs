@@ -5,7 +5,7 @@ using Verse;
 namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompEggLayer), nameof(CompEggLayer.CompTick))]
-public static class Patch_CompTick
+public static class CompEggLayer_CompTick
 {
     public static void Prefix(out float __state, float ___eggProgress)
     {

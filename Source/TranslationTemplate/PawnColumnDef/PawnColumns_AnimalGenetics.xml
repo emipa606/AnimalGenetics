@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: capacity -->
+  <AnimalGenetics_CapacityGene.label>capacity</AnimalGenetics_CapacityGene.label>
+  <!-- EN: damage -->
+  <AnimalGenetics_DamageGene.label>damage</AnimalGenetics_DamageGene.label>
+  <!-- EN: Milk / Wool -->
+  <AnimalGenetics_GatherYieldGene.label>Milk / Wool</AnimalGenetics_GatherYieldGene.label>
+  <!-- EN: health -->
+  <AnimalGenetics_HealthGene.label>health</AnimalGenetics_HealthGene.label>
+  <!-- EN: leather -->
+  <AnimalGenetics_LeatherGene.label>leather</AnimalGenetics_LeatherGene.label>
+  <!-- EN: meat -->
+  <AnimalGenetics_MeatGene.label>meat</AnimalGenetics_MeatGene.label>
+  <!-- EN: speed -->
+  <AnimalGenetics_SpeedGene.label>speed</AnimalGenetics_SpeedGene.label>
+</LanguageData>

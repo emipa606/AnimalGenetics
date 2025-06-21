@@ -33,7 +33,7 @@ public static class Extensions
             return new List<StatDef>();
         }
 
-        return Constants.affectedStats.Where(stat =>
+        return Constants.AffectedStats.Where(stat =>
             stat != global::AnimalGenetics.AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
     }
 }

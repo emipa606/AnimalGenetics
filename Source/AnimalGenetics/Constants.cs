@@ -7,7 +7,7 @@ namespace AnimalGenetics;
 public static class Constants
 {
     // order here dictates order displayed in game.
-    public static readonly List<StatDef> affectedStats =
+    public static readonly List<StatDef> AffectedStats =
     [
         AnimalGenetics.Health,
         AnimalGenetics.Damage,
@@ -18,7 +18,7 @@ public static class Constants
         AnimalGenetics.GatherYield
     ];
 
-    public static readonly List<StatDef> affectedStatsToInsert =
+    public static readonly List<StatDef> AffectedStatsToInsert =
     [
         StatDefOf.MoveSpeed,
         StatDefOf.LeatherAmount,
@@ -26,7 +26,7 @@ public static class Constants
         StatDefOf.CarryingCapacity
     ];
 
-    private static readonly Dictionary<StatDef, string> _labelOverrides = new Dictionary<StatDef, string>
+    private static readonly Dictionary<StatDef, string> labelOverrides = new()
     {
         { StatDefOf.MoveSpeed, "AG.Speed".Translate() },
         { AnimalGenetics.Health, "AG.Health".Translate() },
@@ -37,13 +37,13 @@ public static class Constants
         { AnimalGenetics.GatherYield, "AG.GatherYield".Translate() }
     };
 
-    private static readonly Dictionary<StatDef, string> _descriptionOverrides = new Dictionary<StatDef, string>
+    private static readonly Dictionary<StatDef, string> descriptionOverrides = new()
     {
         { StatDefOf.MoveSpeed, "AG.SpeedDesc".Translate() },
         { StatDefOf.CarryingCapacity, "AG.CapacityDesc".Translate() }
     };
 
-    public static readonly Dictionary<int, string> sortMode = new Dictionary<int, string>
+    public static readonly Dictionary<int, string> SortMode = new()
     {
         { 0, "AG.None".Translate() },
         { 1, "AG.Asc".Translate() },
@@ -52,11 +52,11 @@ public static class Constants
 
     public static string GetLabel(StatDef stat)
     {
-        return !_labelOverrides.TryGetValue(stat, out var getLabel) ? stat.label : getLabel;
+        return !labelOverrides.TryGetValue(stat, out var getLabel) ? stat.label : getLabel;
     }
 
     public static string GetDescription(StatDef stat)
     {
-        return !_descriptionOverrides.TryGetValue(stat, out var getDescription) ? stat.description : getDescription;
+        return !descriptionOverrides.TryGetValue(stat, out var getDescription) ? stat.description : getDescription;
     }
 }

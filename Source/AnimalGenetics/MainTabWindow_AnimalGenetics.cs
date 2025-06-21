@@ -11,21 +11,21 @@ namespace AnimalGenetics;
 
 public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
 {
-    private static readonly MethodInfo _DoTextField;
-    private static readonly float checkboxHeight = 24f;
-    private static readonly float gap = 12f;
-    private static readonly float checkboxWidth = 26f;
-    private readonly float animalsWidth = Text.CalcSize("AG.Animals".Translate()).x + checkboxWidth;
-    private readonly float colonyWidth = Text.CalcSize("AG.Colony".Translate()).x + checkboxWidth;
-    private readonly float humanlikesWidth = Text.CalcSize("AG.Humanlikes".Translate()).x + checkboxWidth;
-    private readonly float otherFactionsWidth = Text.CalcSize("AG.OtherFactions".Translate()).x + checkboxWidth;
-    private readonly float wildWidth = Text.CalcSize("AG.Wild".Translate()).x + checkboxWidth;
-    private int _filterTextId = -1;
+    private const float CheckboxHeight = 24f;
+    private const float Gap = 12f;
+    private const float CheckboxWidth = 26f;
+    private static readonly MethodInfo doTextField;
+    private readonly float animalsWidth = Text.CalcSize("AG.Animals".Translate()).x + CheckboxWidth;
+    private readonly float colonyWidth = Text.CalcSize("AG.Colony".Translate()).x + CheckboxWidth;
+    private readonly float humanlikesWidth = Text.CalcSize("AG.Humanlikes".Translate()).x + CheckboxWidth;
+    private readonly float otherFactionsWidth = Text.CalcSize("AG.OtherFactions".Translate()).x + CheckboxWidth;
+    private readonly float wildWidth = Text.CalcSize("AG.Wild".Translate()).x + CheckboxWidth;
     private AnimalGenetics animalGenetics;
+    private int filterTextId = -1;
 
     static MainTabWindow_AnimalGenetics()
     {
-        _DoTextField = typeof(GUI).GetTypeInfo().GetMethod("DoTextField", BindingFlags.NonPublic | BindingFlags.Static,
+        doTextField = typeof(GUI).GetTypeInfo().GetMethod("DoTextField", BindingFlags.NonPublic | BindingFlags.Static,
             null, [typeof(Rect), typeof(int), typeof(GUIContent), typeof(bool), typeof(int), typeof(GUIStyle)],
             null);
     }
@@ -35,14 +35,11 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         forcePause = false;
     }
 
-    public AnimalGenetics AnimalGenetics
+    private AnimalGenetics AnimalGenetics
     {
         get
         {
-            if (animalGenetics == default)
-            {
-                animalGenetics = Find.World.GetComponent<AnimalGenetics>();
-            }
+            animalGenetics ??= Find.World.GetComponent<AnimalGenetics>();
 
             return animalGenetics;
         }
@@ -56,21 +53,21 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         {
             var toReturn = new List<Pawn>();
             toReturn.AddRange(from p in Find.CurrentMap.mapPawns.AllPawns
-                where p.Spawned && !p.Position.Fogged(p.Map) && VisibleSpecies(p) && VisibleFactions(p) && TextFilter(p)
+                where p.Spawned && !p.Position.Fogged(p.Map) && visibleSpecies(p) && visibleFactions(p) && textFilter(p)
                 select p);
             return toReturn;
         }
     }
 
-    public string TextField(int id, Rect position, string text)
+    private static string textField(int id, Rect position, string text)
     {
-        if (_DoTextField == null)
+        if (doTextField == null)
         {
             return text;
         }
 
         var guicontent = new GUIContent(text);
-        _DoTextField.Invoke(null, [position, id, guicontent, false, -1, GUI.skin.textField]);
+        doTextField.Invoke(null, [position, id, guicontent, false, -1, GUI.skin.textField]);
         return guicontent.text;
     }
 
@@ -81,9 +78,9 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
             AnimalGenetics.ShowAnimals, AnimalGenetics.ShowFaction, AnimalGenetics.ShowOther, AnimalGenetics.ShowWild,
             AnimalGenetics.ShowHumans
         ];
-        if (_filterTextId == -1)
+        if (filterTextId == -1)
         {
-            _filterTextId = GUIUtility.GetControlID(FocusType.Keyboard);
+            filterTextId = GUIUtility.GetControlID(FocusType.Keyboard);
         }
 
         var curX = 5f;
@@ -99,23 +96,23 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         Text.Anchor = TextAnchor.LowerLeft;
         if (Settings.Core.humanMode)
         {
-            Widgets.CheckboxLabeled(new Rect(curX, 10f, animalsWidth, checkboxHeight), "AG.Animals".Translate(),
+            Widgets.CheckboxLabeled(new Rect(curX, 10f, animalsWidth, CheckboxHeight), "AG.Animals".Translate(),
                 ref AnimalGenetics.ShowAnimals, false, null, null, true);
-            curX += animalsWidth + gap;
-            Widgets.CheckboxLabeled(new Rect(curX, 10f, humanlikesWidth, checkboxHeight), "AG.Humanlikes".Translate(),
+            curX += animalsWidth + Gap;
+            Widgets.CheckboxLabeled(new Rect(curX, 10f, humanlikesWidth, CheckboxHeight), "AG.Humanlikes".Translate(),
                 ref AnimalGenetics.ShowHumans, false, null, null, true);
-            curX += humanlikesWidth + gap + 20f; //extra 20 for category gap
+            curX += humanlikesWidth + Gap + 20f; //extra 20 for category gap
         }
 
         if (Settings.Core.omniscientMode)
         {
-            Widgets.CheckboxLabeled(new Rect(curX, 10f, colonyWidth, checkboxHeight), "AG.Colony".Translate(),
+            Widgets.CheckboxLabeled(new Rect(curX, 10f, colonyWidth, CheckboxHeight), "AG.Colony".Translate(),
                 ref AnimalGenetics.ShowFaction, false, null, null, true);
-            curX += colonyWidth + gap;
-            Widgets.CheckboxLabeled(new Rect(curX, 10f, wildWidth, checkboxHeight), "AG.Wild".Translate(),
+            curX += colonyWidth + Gap;
+            Widgets.CheckboxLabeled(new Rect(curX, 10f, wildWidth, CheckboxHeight), "AG.Wild".Translate(),
                 ref AnimalGenetics.ShowWild, false, null, null, true);
-            curX += wildWidth + gap;
-            Widgets.CheckboxLabeled(new Rect(curX, 10f, otherFactionsWidth, checkboxHeight),
+            curX += wildWidth + Gap;
+            Widgets.CheckboxLabeled(new Rect(curX, 10f, otherFactionsWidth, CheckboxHeight),
                 "AG.OtherFactions".Translate(), ref AnimalGenetics.ShowOther, false, null, null, true);
             Text.Anchor = TextAnchor.UpperLeft;
         }
@@ -139,10 +136,10 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         // Working from right side
         curX2 -= 50f;
         Text.Anchor = TextAnchor.MiddleCenter;
-        if (Widgets.ButtonText(new Rect(curX2, 10f, 42f, 24f), Constants.sortMode[Settings.UI.sortMode]))
+        if (Widgets.ButtonText(new Rect(curX2, 10f, 42f, 24f), Constants.SortMode[Settings.UI.sortMode]))
         {
             Settings.UI.sortMode += 1;
-            if (Settings.UI.sortMode >= Constants.sortMode.Count)
+            if (Settings.UI.sortMode >= Constants.SortMode.Count)
             {
                 Settings.UI.sortMode = 0;
             }
@@ -159,7 +156,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
 
         var current = AnimalGenetics.FilterText;
         AnimalGenetics.FilterText =
-            TextField(_filterTextId, new Rect(curX2, 10f, 120f, 24f), AnimalGenetics.FilterText);
+            textField(filterTextId, new Rect(curX2, 10f, 120f, 24f), AnimalGenetics.FilterText);
 
         if (current != AnimalGenetics.FilterText)
         {
@@ -173,7 +170,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         Find.World.renderer.wantedMode = WorldRenderMode.None;
     }
 
-    private bool VisibleFactions(Pawn p)
+    private bool visibleFactions(Pawn p)
     {
         if (AnimalGenetics.ShowFaction && p.Faction == Faction.OfPlayer)
         {
@@ -188,7 +185,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         return AnimalGenetics.ShowOther && p.Faction != Faction.OfPlayer && p.Faction != null;
     }
 
-    private bool VisibleSpecies(Pawn p)
+    private bool visibleSpecies(Pawn p)
     {
         if (AnimalGenetics.ShowAnimals && p.RaceProps.Animal)
         {
@@ -198,21 +195,21 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         return AnimalGenetics.ShowHumans && p.RaceProps.Humanlike;
     }
 
-    private bool TextFilter(Pawn p)
+    private bool textFilter(Pawn p)
     {
         if (string.IsNullOrEmpty(AnimalGenetics.FilterText))
         {
             return true;
         }
 
-        if (p.Name != null && Match(p.Name.ToStringFull))
+        if (p.Name != null && match(p.Name.ToStringFull))
         {
             return true;
         }
 
-        return Match(p.KindLabel) || Match(p.def.label);
+        return match(p.KindLabel) || match(p.def.label);
 
-        bool Match(string str)
+        bool match(string str)
         {
             return str != null && str.IndexOf(AnimalGenetics.FilterText, StringComparison.OrdinalIgnoreCase) >= 0;
         }

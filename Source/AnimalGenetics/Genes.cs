@@ -33,7 +33,7 @@ public static class Genes
 
     public static bool Gatherable(Pawn pawn)
     {
-        foreach (var type in AnimalGeneticsAssemblyLoader.gatherableTypes)
+        foreach (var type in AnimalGeneticsAssemblyLoader.GatherableTypes)
         {
             if (pawn.def.HasComp(type))
             {

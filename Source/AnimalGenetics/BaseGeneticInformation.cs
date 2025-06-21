@@ -6,8 +6,8 @@ namespace AnimalGenetics;
 
 public class BaseGeneticInformation : ThingComp
 {
-    private static readonly Dictionary<BaseGeneticInformation, Dictionary<StatDef, GeneRecord>> LegacyGenesRecords =
-        new Dictionary<BaseGeneticInformation, Dictionary<StatDef, GeneRecord>>();
+    private static readonly Dictionary<BaseGeneticInformation, Dictionary<StatDef, GeneRecord>> legacyGenesRecords =
+        new();
 
     public GeneticInformation GeneticInformation;
 
@@ -32,18 +32,18 @@ public class BaseGeneticInformation : ThingComp
         Scribe_Collections.Look(ref legacyGenesRecord, "geneRecords");
         if (legacyGenesRecord != null)
         {
-            LegacyGenesRecords[this] = legacyGenesRecord;
+            legacyGenesRecords[this] = legacyGenesRecord;
         }
 
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
             if (GeneticInformation == null)
             {
-                if (LegacyGenesRecords.ContainsKey(this))
+                if (legacyGenesRecords.ContainsKey(this))
                 {
                     Log.Message($"[AnimalGenetics]: Migrating Legacy Genetic Information for {parent}");
-                    GeneticInformation = new GeneticInformation(LegacyGenesRecords[this]);
-                    LegacyGenesRecords.Remove(this);
+                    GeneticInformation = new GeneticInformation(legacyGenesRecords[this]);
+                    legacyGenesRecords.Remove(this);
                 }
                 else
                 {

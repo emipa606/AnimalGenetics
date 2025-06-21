@@ -67,7 +67,7 @@ internal class ITab_Pawn_Genetics : ITab
 
         curY += 20;
 
-        var stats = Constants.affectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
+        var stats = Constants.AffectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
         foreach (var stat in stats)
         {
             var rect2 = new Rect(rect.x, curY, rect.width, 20f);
@@ -91,11 +91,11 @@ internal class ITab_Pawn_Genetics : ITab
 
         if (Settings.UI.showBothParentsInPawnTab)
         {
-            DrawBothParentData(rect, headerY, pawn);
+            drawBothParentData(rect, headerY, pawn);
         }
         else
         {
-            DrawSingleParentData(rect, headerY, pawn);
+            drawSingleParentData(rect, headerY, pawn);
         }
 
         Text.Anchor = TextAnchor.UpperLeft;
@@ -107,7 +107,7 @@ internal class ITab_Pawn_Genetics : ITab
         size = new Vector2(300f, 225f);
     }
 
-    private static void DrawBothParentData(Rect rect, float curY, Pawn pawn)
+    private static void drawBothParentData(Rect rect, float curY, Pawn pawn)
     {
         Text.Anchor = TextAnchor.MiddleCenter;
 
@@ -128,7 +128,7 @@ internal class ITab_Pawn_Genetics : ITab
         var motherGeneRecords = pawn.AnimalGenetics()?.Mother?.GeneRecords;
         var fatherGeneRecords = pawn.AnimalGenetics()?.Father?.GeneRecords;
 
-        var stats = Constants.affectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
+        var stats = Constants.AffectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
         foreach (var stat in stats)
         {
             var statRecord = statsGroup[stat];
@@ -151,7 +151,7 @@ internal class ITab_Pawn_Genetics : ITab
         }
     }
 
-    private static void DrawSingleParentData(Rect rect, float curY, Pawn pawn)
+    private static void drawSingleParentData(Rect rect, float curY, Pawn pawn)
     {
         Text.Anchor = TextAnchor.MiddleCenter;
 
@@ -164,7 +164,7 @@ internal class ITab_Pawn_Genetics : ITab
         var motherGeneRecords = pawn.AnimalGenetics()?.Mother?.GeneRecords;
         var fatherGeneRecords = pawn.AnimalGenetics()?.Father?.GeneRecords;
 
-        var stats = Constants.affectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
+        var stats = Constants.AffectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
         foreach (var stat in stats)
         {
             var statRecord = pawn.GetGeneRecord(stat);

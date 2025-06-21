@@ -5,7 +5,7 @@ namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(VerbProperties), nameof(VerbProperties.GetDamageFactorFor), typeof(Tool), typeof(Pawn),
     typeof(HediffComp_VerbGiver))]
-public static class VerbProperties_GetDanageFactorFor_Patch
+public static class VerbProperties_GetDamageFactorFor
 {
     public static void Postfix(ref float __result, Pawn __1)
     {

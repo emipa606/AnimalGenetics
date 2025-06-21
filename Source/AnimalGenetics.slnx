@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="AnimalGenetics/AnimalGenetics.csproj" />
+  <Project Path="AnotherModPatch/AnotherModPatch.csproj" />
+  <Project Path="ColonyManagerPatch/ColonyManagerPatch.csproj" />
+</Solution>

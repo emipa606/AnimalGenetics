@@ -8,14 +8,14 @@ using Verse;
 namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch]
-public static class Patch_ResourceAmount
+public static class Comp_ResourceAmount
 {
     private static IEnumerable<MethodBase> TargetMethods()
     {
         yield return AccessTools.Method(typeof(CompMilkable), "get_ResourceAmount");
         yield return AccessTools.Method(typeof(CompShearable), "get_ResourceAmount");
 
-        if (ModLister.GetActiveModWithIdentifier("OskarPotocki.VanillaFactionsExpanded.Core") == null)
+        if (ModLister.GetActiveModWithIdentifier("OskarPotocki.VanillaFactionsExpanded.Core", true) == null)
         {
             yield break;
         }

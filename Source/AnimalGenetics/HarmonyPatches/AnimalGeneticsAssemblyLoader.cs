@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -9,22 +10,21 @@ namespace AnimalGenetics.HarmonyPatches;
 [StaticConstructorOnStartup]
 public static class AnimalGeneticsAssemblyLoader
 {
-    private static readonly List<PawnColumnDef> _DefaultAnimalsPawnTableDefColumns;
-    private static readonly List<PawnColumnDef> _DefaultWildlifePawnTableDefColumns;
+    private static readonly List<PawnColumnDef> defaultAnimalsPawnTableDefColumns;
+    private static readonly List<PawnColumnDef> defaultWildlifePawnTableDefColumns;
     public static readonly bool ColonyManagerLoaded;
 
-    public static readonly List<Type> gatherableTypes;
+    public static readonly List<Type> GatherableTypes;
 
     static AnimalGeneticsAssemblyLoader()
     {
-        var h = new Harmony("AnimalGenetics");
-        h.PatchAll();
+        new Harmony("AnimalGenetics").PatchAll(Assembly.GetExecutingAssembly());
 
         DefDatabase<StatDef>.Add(AnimalGenetics.Damage);
         DefDatabase<StatDef>.Add(AnimalGenetics.Health);
         DefDatabase<StatDef>.Add(AnimalGenetics.GatherYield);
 
-        var affectedStats = Constants.affectedStatsToInsert;
+        var affectedStats = Constants.AffectedStatsToInsert;
         foreach (var stat in affectedStats)
         {
             try
@@ -40,7 +40,7 @@ public static class AnimalGeneticsAssemblyLoader
         var category = new StatCategoryDef
             { defName = "AnimalGenetics_Category", label = "Genetics", displayAllByDefault = true, displayOrder = 200 };
         DefDatabase<StatCategoryDef>.Add(category);
-        foreach (var stat in Constants.affectedStats)
+        foreach (var stat in Constants.AffectedStats)
         {
             DefDatabase<StatDef>.Add(new StatDefWrapper
             {
@@ -55,7 +55,7 @@ public static class AnimalGeneticsAssemblyLoader
 
         StatDefOf.MarketValue.parts.Add(new MarketValueCalculator());
 
-        gatherableTypes =
+        GatherableTypes =
         [
             typeof(CompShearable),
             typeof(CompMilkable),
@@ -65,22 +65,23 @@ public static class AnimalGeneticsAssemblyLoader
         // Compatibility patches
         try
         {
-            ColonyManagerLoaded = ModLister.GetActiveModWithIdentifier("Fluffy.ColonyManager") != null;
+            ColonyManagerLoaded = ModLister.GetActiveModWithIdentifier("Fluffy.ColonyManager", true) != null;
 
-            if (ModLister.GetActiveModWithIdentifier("CETeam.CombatExtended") != null)
+            if (ModLister.GetActiveModWithIdentifier("CETeam.CombatExtended", true) != null)
             {
-                gatherableTypes.Add(AccessTools.TypeByName("CombatExtended.CompShearableRenameable"));
+                GatherableTypes.Add(AccessTools.TypeByName("CombatExtended.CompShearableRenameable"));
             }
 
-            if (ModLister.GetActiveModWithIdentifier("OskarPotocki.VanillaFactionsExpanded.Core") != null)
+            if (ModLister.GetActiveModWithIdentifier("OskarPotocki.VanillaFactionsExpanded.Core", true) != null)
             {
-                gatherableTypes.Add(AccessTools.TypeByName("AnimalBehaviours.CompAnimalProduct"));
+                GatherableTypes.Add(AccessTools.TypeByName("AnimalBehaviours.CompAnimalProduct"));
             }
 
             if (LoadedModManager.RunningModsListForReading.Any(x => x.PackageId == "rim.job.world"))
             {
                 Log.Message("[AnimalGenetics]: Patched RJW");
-                h.Patch(AccessTools.Method(AccessTools.TypeByName("rjw.Hediff_BasePregnancy"), "GenerateBabies"),
+                new Harmony("AnimalGenetics").Patch(
+                    AccessTools.Method(AccessTools.TypeByName("rjw.Hediff_BasePregnancy"), "GenerateBabies"),
                     new HarmonyMethod(typeof(CompatibilityPatches),
                         nameof(CompatibilityPatches.RJW_GenerateBabies_Prefix)),
                     new HarmonyMethod(typeof(CompatibilityPatches),
@@ -92,8 +93,8 @@ public static class AnimalGeneticsAssemblyLoader
             // ignored
         }
 
-        _DefaultAnimalsPawnTableDefColumns = [..PawnTableDefOf.Animals.columns];
-        _DefaultWildlifePawnTableDefColumns = [..PawnTableDefOf.Wildlife.columns];
+        defaultAnimalsPawnTableDefColumns = [..PawnTableDefOf.Animals.columns];
+        defaultWildlifePawnTableDefColumns = [..PawnTableDefOf.Wildlife.columns];
 
         var placeholderPosition =
             MainTabWindow_AnimalGenetics.PawnTableDefs.Genetics.columns.FindIndex(def =>
@@ -109,7 +110,7 @@ public static class AnimalGeneticsAssemblyLoader
     {
         if (PatchState.PatchedGenesInAnimalsTab != Settings.UI.showGenesInAnimalsTab)
         {
-            PawnTableDefOf.Animals.columns = [.._DefaultAnimalsPawnTableDefColumns];
+            PawnTableDefOf.Animals.columns = [..defaultAnimalsPawnTableDefColumns];
             if (Settings.UI.showGenesInAnimalsTab)
             {
                 PawnTableDefOf.Animals.columns.AddRange(PawnTableColumnsDefOf.Genetics.columns);
@@ -120,7 +121,7 @@ public static class AnimalGeneticsAssemblyLoader
 
         if (PatchState.PatchedGenesInWildlifeTab != Settings.UI.showGenesInWildlifeTab)
         {
-            PawnTableDefOf.Wildlife.columns = [.._DefaultWildlifePawnTableDefColumns];
+            PawnTableDefOf.Wildlife.columns = [..defaultWildlifePawnTableDefColumns];
             if (Settings.UI.showGenesInWildlifeTab)
             {
                 PawnTableDefOf.Wildlife.columns.AddRange(PawnTableColumnsDefOf.Genetics.columns);
@@ -133,7 +134,7 @@ public static class AnimalGeneticsAssemblyLoader
         mainButton.buttonVisible = Settings.UI.showGeneticsTab;
     }
 
-    public static class PatchState
+    private static class PatchState
     {
         public static bool PatchedGenesInAnimalsTab;
         public static bool PatchedGenesInWildlifeTab;

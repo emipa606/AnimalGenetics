@@ -14,13 +14,13 @@ namespace AnimalGenetics;
 [StaticConstructorOnStartup]
 public class ColonyManager
 {
-    private static List<KeyValuePair<Verse.WeakReference<object>, Data>> _managerJobToData =
+    private static List<KeyValuePair<Verse.WeakReference<object>, Data>> managerJobToData =
         [];
 
-    private static readonly MethodInfo _ManagerTab_Livestock_DrawTamingSection;
-    private static readonly MethodInfo _Widgets_Section_Section;
+    private static readonly MethodInfo managerTabLivestockDrawTamingSection;
+    private static readonly MethodInfo widgetsSectionSection;
 
-    private static object _CurrentJob;
+    private static object currentJob;
 
     static ColonyManager()
     {
@@ -33,11 +33,11 @@ public class ColonyManager
         var harmony = new Harmony("AnimalGenetics.ColonyManager");
         try
         {
-            _Widgets_Section_Section = typeof(Widgets_Section).GetMethod("Section");
-            harmony.Patch(_Widgets_Section_Section,
+            widgetsSectionSection = typeof(Widgets_Section).GetMethod("Section");
+            harmony.Patch(widgetsSectionSection,
                 new HarmonyMethod(typeof(ColonyManager), nameof(WidgetsSectionPrefix)));
 
-            _ManagerTab_Livestock_DrawTamingSection = typeof(ManagerTab_Livestock).GetMethod("DrawTamingSection",
+            managerTabLivestockDrawTamingSection = typeof(ManagerTab_Livestock).GetMethod("DrawTamingSection",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             harmony.Patch(AccessTools.Method(typeof(ManagerTab_Livestock), "DoContent"),
                 new HarmonyMethod(typeof(ColonyManager), nameof(DoContent_Prefix)),
@@ -62,29 +62,30 @@ public class ColonyManager
     private static Data GetDataOrCreate(object managerJob)
     {
         // Create an array of object-Data pairs
-        var aliveObjects = _managerJobToData.Select(kv => new KeyValuePair<object, Data>(kv.Key.Target, kv.Value))
+        var aliveObjects = managerJobToData.Select(kv => new KeyValuePair<object, Data>(kv.Key.Target, kv.Value))
             .Where(kv => kv.Key != null).ToList();
         var matches = aliveObjects.Where(kv => kv.Key == managerJob);
 
         Data toRet;
-        if (!matches.Any())
+        var matchesArray = matches as KeyValuePair<object, Data>[] ?? matches.ToArray();
+        if (!matchesArray.Any())
         {
             aliveObjects.Add(new KeyValuePair<object, Data>(managerJob, new Data()));
             toRet = aliveObjects.Last().Value;
         }
         else
         {
-            toRet = matches.First().Value;
+            toRet = matchesArray.First().Value;
         }
 
-        _managerJobToData = aliveObjects.Select(kv =>
+        managerJobToData = aliveObjects.Select(kv =>
                 new KeyValuePair<Verse.WeakReference<object>, Data>(new Verse.WeakReference<object>(kv.Key), kv.Value))
             .ToList();
 
         return toRet;
     }
 
-    private static float GetGene(Pawn pawn, StatDef gene)
+    private static float getGene(Pawn pawn, StatDef gene)
     {
         if (gene == AnimalGenetics.GatherYield && !Genes.Gatherable(pawn))
         {
@@ -94,18 +95,18 @@ public class ColonyManager
         return Genes.GetGene(pawn, gene);
     }
 
-    private static float CalculatePreferenceScore(Data data, Pawn pawn)
+    private static float calculatePreferenceScore(Data data, Pawn pawn)
     {
         Log.Message(
-            $"[AnimalGenetics]: CalculatePreferenceScore for {pawn.Name}: {Constants.affectedStats.Select(gene => GetGene(pawn, gene) * data.Values[gene]).Sum()}");
-        return Constants.affectedStats.Select(gene => GetGene(pawn, gene) * data.Values[gene]).Sum();
+            $"[AnimalGenetics]: CalculatePreferenceScore for {pawn.Name}: {Constants.AffectedStats.Select(gene => getGene(pawn, gene) * data.Values[gene]).Sum()}");
+        return Constants.AffectedStats.Select(gene => getGene(pawn, gene) * data.Values[gene]).Sum();
     }
 
-    private static void Section(ref Vector2 position, float width, Func<Vector2, float, float> drawerFunc,
+    private static void section(ref Vector2 position, float width, Func<Vector2, float, float> drawerFunc,
         string header = null, int id = 0)
     {
         var parameters = new object[] { position, width, drawerFunc, header, id };
-        _Widgets_Section_Section.Invoke(null, parameters);
+        widgetsSectionSection.Invoke(null, parameters);
         position = (Vector2)parameters[0];
     }
 
@@ -122,13 +123,13 @@ public class ColonyManager
 
     public static bool DoContent_Prefix(object ____selectedCurrent)
     {
-        _CurrentJob = ____selectedCurrent;
+        currentJob = ____selectedCurrent;
         return true;
     }
 
     public static void DoContent_Postfix()
     {
-        _CurrentJob = null;
+        currentJob = null;
     }
 
     public static bool DoButcherJobs_Prefix(object __instance, ref bool actionTaken)
@@ -149,22 +150,22 @@ public class ColonyManager
     public static bool WidgetsSectionPrefix(ref Vector2 position, float width, Func<Vector2, float, float> drawerFunc,
         MethodInfo __originalMethod)
     {
-        if (drawerFunc.GetMethodInfo() != _ManagerTab_Livestock_DrawTamingSection)
+        if (drawerFunc.GetMethodInfo() != managerTabLivestockDrawTamingSection)
         {
             return true;
         }
 
         var arguments = new object[]
-            { position, width, (Func<Vector2, float, float>)DrawAnimalGeneticSection, "AnimalGenetics", 0 };
+            { position, width, (Func<Vector2, float, float>)drawAnimalGeneticSection, "AnimalGenetics", 0 };
         __originalMethod.Invoke(null, arguments);
         position = (Vector2)arguments[0];
         return true;
     }
 
-    private static float DrawAnimalGeneticSection(Vector2 pos, float width)
+    private static float drawAnimalGeneticSection(Vector2 pos, float width)
     {
         return Utilities.DrawCogButton(pos, width, "Configure Preferences",
-            () => { Find.WindowStack.Add(new SettingsWindow(GetDataOrCreate(_CurrentJob))); });
+            () => { Find.WindowStack.Add(new SettingsWindow(GetDataOrCreate(currentJob))); });
     }
 
     private static class Utilities
@@ -217,9 +218,9 @@ public class ColonyManager
 
         public Data()
         {
-            foreach (var gene in Constants.affectedStats)
+            foreach (var gene in Constants.AffectedStats)
             {
-                Values[gene] = 1.0f / Constants.affectedStats.Count;
+                Values[gene] = 1.0f / Constants.AffectedStats.Count;
             }
         }
 
@@ -244,7 +245,7 @@ public class ColonyManager
 
         public override Vector2 InitialSize => new Vector2(300f, 600);
 
-        private float DoSlider(Listing_Standard listingStandard, StatDef gene)
+        private float doSlider(Listing_Standard listingStandard, StatDef gene)
         {
             var startHeight = listingStandard.CurHeight;
 
@@ -282,15 +283,15 @@ public class ColonyManager
             var position = new Vector2(rect.x, rect.y + listingStandard.CurHeight);
             var width = rect.width;
 
-            Section(ref position, width - (2 * Utilities.Margin), DoCheckboxes,
+            section(ref position, width - (2 * Utilities.Margin), doCheckboxes,
                 "AnimalGenetics.ColonyManager.UseWith".Translate());
-            Section(ref position, width - (2 * Utilities.Margin), DoGenePreferences,
+            section(ref position, width - (2 * Utilities.Margin), doGenePreferences,
                 "AnimalGenetics.ColonyManager.GeneImportance".Translate());
 
             listingStandard.End();
         }
 
-        private float DoCheckboxes(Vector2 pos, float width)
+        private float doCheckboxes(Vector2 pos, float width)
         {
             //TooltipHandler.TipRegion(new Rect(pos.x, pos.y, width, 30), tooltip.Value);
             FluffyManager.Utilities.DrawToggle(new Rect(pos.x, pos.y, width, 30),
@@ -302,7 +303,7 @@ public class ColonyManager
             return 60;
         }
 
-        private float DoGenePreferences(Vector2 position, float width)
+        private float doGenePreferences(Vector2 position, float width)
         {
             var rect = new Rect(position, new Vector2(width, 1000));
 
@@ -311,14 +312,14 @@ public class ColonyManager
 
             Text.Font = GameFont.Tiny;
 
-            foreach (var gene in Constants.affectedStats)
+            foreach (var gene in Constants.AffectedStats)
             {
                 var label = Constants.GetLabel(gene);
                 var description = Constants.GetDescription(gene);
 
-                var highlightRect = listingStandard.Label(label, -1f, description);
+                var highlightRect = listingStandard.Label((TaggedString)label, -1f, description);
 
-                highlightRect.height += DoSlider(listingStandard, gene);
+                highlightRect.height += doSlider(listingStandard, gene);
 
                 Widgets.DrawHighlightIfMouseover(highlightRect);
             }
@@ -353,22 +354,22 @@ public class ColonyManager
             }
         }
 
-        private void AddDesignation(Pawn p, DesignationDef def)
+        private void addDesignation(Pawn p, DesignationDef def)
         {
             _self.AddDesignation(p, def);
         }
 
-        private bool IsReachable(Thing target)
+        private bool isReachable(Thing target)
         {
             return _self.IsReachable(target);
         }
 
-        private float Distance(Thing target, IntVec3 source)
+        private float distance(Thing target, IntVec3 source)
         {
             return _self.Distance(target, source);
         }
 
-        private bool TryRemoveDesignation(AgeAndSex ageSex, DesignationDef def)
+        private bool tryRemoveDesignation(AgeAndSex ageSex, DesignationDef def)
         {
             return (bool)_tryRemoveDesignationMethod.Invoke(_self, [ageSex, def]);
         }
@@ -410,21 +411,19 @@ public class ColonyManager
 
                     // get list of animals in correct sort order.
                     var animals = Trigger.pawnKind.GetTame(manager, ageSex)
-                        .Where(
-                            p => manager.map.designationManager.DesignationOn(
-                                     p, DesignationDefOf.Slaughter) == null
-                                 && (ButcherTrained ||
-                                     !p.training.HasLearned(TrainableDefOf.Obedience))
-                                 && (ButcherPregnant || !p.VisiblyPregnant())
-                                 && (ButcherBonded || !p.BondedWithColonist()))
-                        .OrderBy(
-                            p => (oldestFirst ? -1 : 1) * p.ageTracker.AgeBiologicalTicks)
+                        .Where(p => manager.map.designationManager.DesignationOn(
+                                        p, DesignationDefOf.Slaughter) == null
+                                    && (ButcherTrained ||
+                                        !p.training.HasLearned(TrainableDefOf.Obedience))
+                                    && (ButcherPregnant || !p.VisiblyPregnant())
+                                    && (ButcherBonded || !p.BondedWithColonist()))
+                        .OrderBy(p => (oldestFirst ? -1 : 1) * p.ageTracker.AgeBiologicalTicks)
                         .ToList();
 
                     var preferenceData = GetDataOrCreate(_self);
                     if (preferenceData.UseWithButchering)
                     {
-                        animals = animals.OrderBy(pawn => CalculatePreferenceScore(preferenceData, pawn)).ToList();
+                        animals = animals.OrderBy(pawn => calculatePreferenceScore(preferenceData, pawn)).ToList();
                     }
 
 #if DEBUG_LIFESTOCK
@@ -436,14 +435,14 @@ public class ColonyManager
 #if DEBUG_LIFESTOCK
                         Log.Message( "[AnimalGenetics]: Butchering " + animals[i].GetUniqueLoadID() );
 #endif
-                        AddDesignation(animals[i], DesignationDefOf.Slaughter);
+                        addDesignation(animals[i], DesignationDefOf.Slaughter);
                     }
                 }
 
                 // remove extra designations
                 while (surplus < 0)
                 {
-                    if (TryRemoveDesignation(ageSex, DesignationDefOf.Slaughter))
+                    if (tryRemoveDesignation(ageSex, DesignationDefOf.Slaughter))
                     {
 #if DEBUG_LIFESTOCK
                         Log.Message( "[AnimalGenetics]: Removed extra butchery designation" );
@@ -488,7 +487,7 @@ public class ColonyManager
                                     manager.map.designationManager.DesignationOn(p) == null &&
                                     (TameArea == null ||
                                      TameArea.ActiveCells.Contains(p.Position)) &&
-                                    IsReachable(p)).ToList();
+                                    isReachable(p)).ToList();
 
                     // skip if no animals available.
                     if (animals.Count == 0)
@@ -497,13 +496,13 @@ public class ColonyManager
                     }
 
                     animals =
-                        animals.OrderByDescending(p => p.ageTracker.AgeBiologicalTicks / Distance(p, position))
+                        animals.OrderByDescending(p => p.ageTracker.AgeBiologicalTicks / distance(p, position))
                             .ToList();
 
                     var preferenceData = GetDataOrCreate(_self);
                     if (preferenceData.UseWithTaming)
                     {
-                        animals = animals.OrderByDescending(pawn => CalculatePreferenceScore(preferenceData, pawn))
+                        animals = animals.OrderByDescending(pawn => calculatePreferenceScore(preferenceData, pawn))
                             .ToList();
                     }
 
@@ -516,14 +515,14 @@ public class ColonyManager
 #if DEBUG_LIFESTOCK
                         Log.Message( "[AnimalGenetics]: Adding taming designation: " + animals[i].GetUniqueLoadID() );
 #endif
-                        AddDesignation(animals[i], DesignationDefOf.Tame);
+                        addDesignation(animals[i], DesignationDefOf.Tame);
                     }
                 }
 
                 // remove extra designations
                 while (deficit < 0)
                 {
-                    if (TryRemoveDesignation(ageSex, DesignationDefOf.Tame))
+                    if (tryRemoveDesignation(ageSex, DesignationDefOf.Tame))
                     {
 #if DEBUG_LIFESTOCK
                         Log.Message( "[AnimalGenetics]: Removed extra taming designation" );

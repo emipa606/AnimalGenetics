@@ -6,7 +6,7 @@ using Verse;
 namespace AnimalGenetics.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompEggLayer), nameof(CompEggLayer.ProduceEgg))]
-public static class Patch_ProduceEgg
+public static class CompEggLayer_ProduceEgg
 {
     public static void Postfix(ref Thing __result, CompEggLayer __instance)
     {

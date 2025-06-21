@@ -19,7 +19,7 @@ public static class GeneticCalculator
     public static void EnsureAllGenesExist(Dictionary<StatDef, GeneRecord> records, GeneticInformation mother,
         GeneticInformation father)
     {
-        var affectedStats = Constants.affectedStats;
+        var affectedStats = Constants.AffectedStats;
 
         foreach (var stat in affectedStats)
         {

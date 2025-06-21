@@ -7,13 +7,13 @@ namespace AnimalGenetics;
 
 public class AnimalGenetics(World world) : WorldComponent(world)
 {
-    public static readonly StatDef GatherYield = new StatDef
+    public static readonly StatDef GatherYield = new()
         { defName = "GatherYield", description = "AG.GatherYieldDesc".Translate(), alwaysHide = true };
 
-    public static readonly StatDef Damage = new StatDef
+    public static readonly StatDef Damage = new()
         { defName = "Damage", description = "AG.DamageDesc".Translate(), alwaysHide = true };
 
-    public static readonly StatDef Health = new StatDef
+    public static readonly StatDef Health = new()
         { defName = "Health", description = "AG.HealthDesc".Translate(), alwaysHide = true };
 
     public readonly CoreSettings Settings = (CoreSettings)AnimalGeneticsSettings.InitialCore.Clone();
