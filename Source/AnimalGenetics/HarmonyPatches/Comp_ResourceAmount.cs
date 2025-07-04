@@ -21,7 +21,7 @@ public static class Comp_ResourceAmount
         }
 
         Log.Message("[AnimalGenetics]: Added patch for CompAnimalProduct in Vanilla Expanded Framework");
-        yield return AccessTools.Method("AnimalBehaviours.CompAnimalProduct:get_ResourceAmount");
+        yield return AccessTools.Method("VEF.AnimalBehaviours.CompAnimalProduct:get_ResourceAmount");
     }
 
     public static void Postfix(ref int __result, CompHasGatherableBodyResource __instance)
