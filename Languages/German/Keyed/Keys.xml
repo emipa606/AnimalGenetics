@@ -75,4 +75,5 @@
   <AG.RegenerateGenes>Gene auf der Grundlage der aktuellen Spieleinstellungen neu generieren</AG.RegenerateGenes>
   <AnimalGenetics.GeneValue>Genwert-Effekt: {0}</AnimalGenetics.GeneValue>
   <AnimalGenetics.GeneValueToolTip>100 % bedeutet, dass der Wert linear mit dem Prozentsatz der Gene beeinflusst wird. Die Werte werden additiv berechnet, so dass zwei Gene mit 115% einen Wertzuwachs von 30% erhalten. Diese Einstellung kann verwendet werden, um den Wert der einzelnen Prozentwerte zu ändern. Wenn Sie diesen Wert also auf 50% setzen, wird der Wert im vorherigen Beispiel um 15% erhöht.</AnimalGenetics.GeneValueToolTip>
+  <AG.Wildness>Wildheit</AG.Wildness>
 </LanguageData>

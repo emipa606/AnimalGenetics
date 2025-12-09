@@ -53,6 +53,11 @@ public static class GeneticCalculator
                 record.Parent = fatherStat != null ? GeneRecord.Source.Father : GeneRecord.Source.None;
             }
 
+            if (Constants.InvertedStats.Contains(stat))
+            {
+                delta = -delta;
+            }
+
             record.Value = parentValue + delta;
 
             records[stat] = record;

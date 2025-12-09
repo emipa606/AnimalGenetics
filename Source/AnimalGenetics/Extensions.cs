@@ -7,33 +7,36 @@ namespace AnimalGenetics;
 
 public static class Extensions
 {
-    public static GeneticInformation AnimalGenetics(this Pawn pawn)
+    extension(Pawn pawn)
     {
-        return pawn.TryGetComp<BaseGeneticInformation>()?.GeneticInformation;
-    }
-
-    public static float GetGene(this Pawn pawn, StatDef stat)
-    {
-        var record = GetGeneRecord(pawn, stat);
-
-        return record?.Value ?? 1.0f;
-    }
-
-    public static GeneRecord GetGeneRecord(this Pawn pawn, StatDef stat)
-    {
-        var records = pawn.AnimalGenetics()?.GeneRecords;
-
-        return records?.GetValueOrDefault(stat);
-    }
-
-    public static IEnumerable<StatDef> GetGenes(this Pawn pawn)
-    {
-        if (!Genes.EffectsThing(pawn))
+        public GeneticInformation AnimalGenetics()
         {
-            return new List<StatDef>();
+            return pawn.TryGetComp<BaseGeneticInformation>()?.GeneticInformation;
         }
 
-        return Constants.AffectedStats.Where(stat =>
-            stat != global::AnimalGenetics.AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
+        public float GetGene(StatDef stat)
+        {
+            var record = GetGeneRecord(pawn, stat);
+
+            return record?.Value ?? 1.0f;
+        }
+
+        public GeneRecord GetGeneRecord(StatDef stat)
+        {
+            var records = pawn.AnimalGenetics()?.GeneRecords;
+
+            return records?.GetValueOrDefault(stat);
+        }
+
+        public IEnumerable<StatDef> GetGenes()
+        {
+            if (!Genes.EffectsThing(pawn))
+            {
+                return new List<StatDef>();
+            }
+
+            return Constants.AffectedStats.Where(stat =>
+                stat != global::AnimalGenetics.AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
+        }
     }
 }

@@ -68,4 +68,12 @@
   <AG.RegenerateGenes>根据当前游戏设置重新生成基因</AG.RegenerateGenes>
   <AnimalGenetics.GeneValue>基因值影响：{0}。</AnimalGenetics.GeneValue>
   <AnimalGenetics.GeneValueToolTip>100%意味着该值将受到基因百分比的线性影响。这些都是计算出来的加法，所以两个115%的基因将得到30%的价值增加。这个设置可以用来改变每个百分比的值。因此，将这个值设置为50%，反而会导致前面的例子中的15%的价值增加。</AnimalGenetics.GeneValueToolTip>
+  <!-- Gene names -->
+  <AG.Wildness>野性</AG.Wildness>
+  <!-- Gene Descriptions -->
+  <!-- Labels and Buttons -->
+  <!-- Care should be taken with string length here. Long ones could go display over the checkbox, for example. -->
+  <!-- Note the newline (\n) -->
+  <!-- Pawn Genetics Tab -->
+  <!-- Mod Settings menu -->
 </LanguageData>

@@ -3,12 +3,13 @@
   "CanAdd": "0",
   "CanRemove": "0",
   "PreviewVersion": "1.6",
-  "LastXmlCleaning": "2025-07-04T22:19:11.7663745+02:00",
+  "LastXmlCleaning": "2025-12-09T20:13:32.1814625+01:00",
   "SocialImageSet": true,
   "SearchTags": " evolution",
   "Patches": true,
   "Defs": true,
   "Assemblies": true,
-  "LinesOfCode": 102296.0,
-  "LinesOfXML": 4768.0
+  "LinesOfCode": 105112,
+  "LinesOfXML": 4768,
+  "CodeBaseSize": 79
 }

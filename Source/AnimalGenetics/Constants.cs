@@ -15,7 +15,13 @@ public static class Constants
         StatDefOf.CarryingCapacity,
         StatDefOf.MeatAmount,
         StatDefOf.LeatherAmount,
+        StatDefOf.Wildness,
         AnimalGenetics.GatherYield
+    ];
+
+    public static readonly List<StatDef> InvertedStats =
+    [
+        StatDefOf.Wildness
     ];
 
     public static readonly List<StatDef> AffectedStatsToInsert =
@@ -23,7 +29,8 @@ public static class Constants
         StatDefOf.MoveSpeed,
         StatDefOf.LeatherAmount,
         StatDefOf.MeatAmount,
-        StatDefOf.CarryingCapacity
+        StatDefOf.CarryingCapacity,
+        StatDefOf.Wildness
     ];
 
     private static readonly Dictionary<StatDef, string> labelOverrides = new()
@@ -34,6 +41,7 @@ public static class Constants
         { StatDefOf.CarryingCapacity, "AG.Capacity".Translate() },
         { StatDefOf.MeatAmount, "AG.Meat".Translate() },
         { StatDefOf.LeatherAmount, "AG.Leather".Translate() },
+        { StatDefOf.Wildness, "AG.Wildness".Translate() },
         { AnimalGenetics.GatherYield, "AG.GatherYield".Translate() }
     };
 

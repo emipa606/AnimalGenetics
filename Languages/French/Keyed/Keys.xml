@@ -68,4 +68,12 @@
   <AG.RegenerateGenes>Régénérer les gènes en fonction des paramètres de jeu actuels.</AG.RegenerateGenes>
   <AnimalGenetics.GeneValue>Effet de la valeur du gène : {0}</AnimalGenetics.GeneValue>
   <AnimalGenetics.GeneValueToolTip>100% signifie que la valeur sera affectée de manière linéaire par le pourcentage des gènes. Ils sont calculés de manière additive, ainsi deux gènes avec 115% auront une augmentation de valeur de 30%. Ce paramètre peut être utilisé pour modifier la valeur de chaque pourcentage. Ainsi, en fixant cette valeur à 50 %, on obtiendra une augmentation de 15 % de la valeur dans l'exemple précédent.</AnimalGenetics.GeneValueToolTip>
+  <!-- Gene names -->
+  <AG.Wildness>La sauvagerie</AG.Wildness>
+  <!-- Gene Descriptions -->
+  <!-- Labels and Buttons -->
+  <!-- Care should be taken with string length here. Long ones could go display over the checkbox, for example. -->
+  <!-- Note the newline (\n) -->
+  <!-- Pawn Genetics Tab -->
+  <!-- Mod Settings menu -->
 </LanguageData>

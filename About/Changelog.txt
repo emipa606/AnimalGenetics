@@ -1,5 +1,9 @@
 # Changelog for AnimalGenetics
 
+1.6.2 - Genes now affect wildness
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.6.1 - Fix for VEF changed namespace
 
 
