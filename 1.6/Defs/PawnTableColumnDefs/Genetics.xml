@@ -9,6 +9,7 @@
       <li>AnimalGenetics_CapacityGene</li>
       <li>AnimalGenetics_MeatGene</li>
       <li>AnimalGenetics_LeatherGene</li>
+      <li>AnimalGenetics_WildnessGene</li>
       <li>AnimalGenetics_GatherYieldGene</li>
     </columns>
   </AnimalGenetics.PawnTableColumnsDef>

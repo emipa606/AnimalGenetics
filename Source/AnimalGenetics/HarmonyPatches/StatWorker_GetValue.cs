@@ -9,6 +9,12 @@ public static class StatWorker_GetValue
 {
     public static void Postfix(ref float __result, StatRequest req, RimWorld.StatWorker __instance)
     {
+        var coreSettings = CoreMod.ConfigureInitialSettings ? Settings.InitialCore : Settings.Core;
+        if (!coreSettings.wildnessMode)
+        {
+            return;
+        }
+
         if (__instance is not StatWorker_Wildness)
         {
             return;

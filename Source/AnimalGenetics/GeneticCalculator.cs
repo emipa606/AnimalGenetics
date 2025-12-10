@@ -58,7 +58,7 @@ public static class GeneticCalculator
                 delta = -delta;
             }
 
-            record.Value = parentValue + delta;
+            record.Value = Math.Max(parentValue + delta, 0);
 
             records[stat] = record;
         }

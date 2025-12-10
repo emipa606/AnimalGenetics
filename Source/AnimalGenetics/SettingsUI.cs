@@ -145,6 +145,8 @@ internal class SettingsUI
             "AG.HumanlikeGenesTooltip".Translate());
         listingStandard2.CheckboxLabeled("AG.Omniscient".Translate(), ref settings.omniscientMode,
             "AG.OmniscientTooltip".Translate());
+        listingStandard2.CheckboxLabeled("AG.WildnessMode".Translate(), ref settings.wildnessMode,
+            "AG.WildnessModeTooltip".Translate());
 
         if (listingStandard2.ButtonText("AG.DefaultSettings".Translate()))
         {

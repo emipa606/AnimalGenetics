@@ -37,6 +37,12 @@
     <label>leather</label>
   </PawnColumnDef>
   <PawnColumnDef>
+    <defName>AnimalGenetics_WildnessGene</defName>
+    <workerClass>AnimalGenetics.PawnColumnWorker_WildnessGene</workerClass>
+    <sortable>true</sortable>
+    <label>wildness</label>
+  </PawnColumnDef>
+  <PawnColumnDef>
     <defName>AnimalGenetics_GatherYieldGene</defName>
     <workerClass>AnimalGenetics.PawnColumnWorker_GatherYieldGene</workerClass>
     <sortable>true</sortable>

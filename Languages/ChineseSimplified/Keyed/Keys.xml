@@ -76,4 +76,6 @@
   <!-- Note the newline (\n) -->
   <!-- Pawn Genetics Tab -->
   <!-- Mod Settings menu -->
+  <AG.WildnessMode>影响野性</AG.WildnessMode>
+  <AG.WildnessModeTooltip>改进遗传学会降低动物的野性</AG.WildnessModeTooltip>
 </LanguageData>

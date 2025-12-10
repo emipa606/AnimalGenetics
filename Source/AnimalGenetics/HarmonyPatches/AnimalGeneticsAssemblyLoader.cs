@@ -53,6 +53,8 @@ public static class AnimalGeneticsAssemblyLoader
             });
         }
 
+        VerifyWildness();
+
         StatDefOf.MarketValue.parts.Add(new MarketValueCalculator());
 
         GatherableTypes =
@@ -104,6 +106,79 @@ public static class AnimalGeneticsAssemblyLoader
             PawnTableColumnsDefOf.Genetics.columns);
 
         PatchUI();
+    }
+
+    public static void VerifyWildness()
+    {
+        var coreSettings = CoreMod.ConfigureInitialSettings ? Settings.InitialCore : Settings.Core;
+        if (coreSettings.wildnessMode)
+        {
+            // Verify that the wildness stat is included in the Constants lists
+            if (!Constants.AffectedStats.Contains(StatDefOf.Wildness))
+            {
+                Constants.AffectedStats.Add(StatDefOf.Wildness);
+            }
+
+            if (!Constants.AffectedStatsToInsert.Contains(StatDefOf.Wildness))
+            {
+                Constants.AffectedStatsToInsert.Add(StatDefOf.Wildness);
+            }
+
+            if (DefDatabase<StatDef>.GetNamedSilentFail($"AnimalGenetics_{StatDefOf.Wildness.defName}") != null)
+            {
+                return;
+            }
+
+            if (!CoreMod.ConfigureInitialSettings)
+            {
+                return;
+            }
+
+            var category = DefDatabase<StatCategoryDef>.GetNamedSilentFail("AnimalGenetics_Category");
+            DefDatabase<StatDef>.Add(new StatDefWrapper
+            {
+                defName = $"AnimalGenetics_{StatDefOf.Wildness.defName}",
+                label = Constants.GetLabel(StatDefOf.Wildness),
+                Underlying = StatDefOf.Wildness,
+                category = category,
+                workerClass = typeof(StatWorker),
+                toStringStyle = ToStringStyle.PercentZero
+            });
+            var columnDef = DefDatabase<PawnColumnDef>.GetNamedSilentFail("AnimalGenetics_WildnessGene");
+            if (columnDef != null && !PawnTableColumnsDefOf.Genetics.columns.Contains(columnDef))
+            {
+                PawnTableColumnsDefOf.Genetics.columns.Add(columnDef);
+            }
+        }
+        else
+        {
+            if (Constants.AffectedStats.Contains(StatDefOf.Wildness))
+            {
+                Constants.AffectedStats.Remove(StatDefOf.Wildness);
+            }
+
+            if (Constants.AffectedStatsToInsert.Contains(StatDefOf.Wildness))
+            {
+                Constants.AffectedStatsToInsert.Remove(StatDefOf.Wildness);
+            }
+
+            if (!CoreMod.ConfigureInitialSettings)
+            {
+                return;
+            }
+
+            var wildnessStat = DefDatabase<StatDef>.GetNamedSilentFail($"AnimalGenetics_{StatDefOf.Wildness.defName}");
+            if (wildnessStat != null)
+            {
+                DefDatabase<StatDef>.Remove(wildnessStat);
+            }
+
+            var columnDef = DefDatabase<PawnColumnDef>.GetNamedSilentFail("AnimalGenetics_WildnessGene");
+            if (columnDef != null && PawnTableColumnsDefOf.Genetics.columns.Contains(columnDef))
+            {
+                PawnTableColumnsDefOf.Genetics.columns.Remove(columnDef);
+            }
+        }
     }
 
     public static void PatchUI()

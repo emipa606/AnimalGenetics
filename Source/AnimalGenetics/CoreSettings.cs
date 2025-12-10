@@ -13,6 +13,7 @@ public class CoreSettings : ModSettings, ICloneable
     public float mutationStdDev;
     public bool omniscientMode;
     public float stdDev;
+    public bool wildnessMode;
 
     public CoreSettings()
     {
@@ -31,6 +32,7 @@ public class CoreSettings : ModSettings, ICloneable
         mutationStdDev = 0.05f;
         mutationMean = 0.03f;
         humanMode = false;
+        wildnessMode = true;
         omniscientMode = true;
         bestGeneChance = 0.5f;
         geneValue = 1f;
@@ -45,6 +47,7 @@ public class CoreSettings : ModSettings, ICloneable
         Scribe_Values.Look(ref mutationStdDev, "mutationStdDev", defaults.mutationStdDev);
         Scribe_Values.Look(ref mutationMean, "mutationMean", defaults.mutationMean);
         Scribe_Values.Look(ref humanMode, "humanMode", defaults.humanMode);
+        Scribe_Values.Look(ref wildnessMode, "wildnessMode", defaults.wildnessMode);
         Scribe_Values.Look(ref omniscientMode, "omniscientMode", defaults.omniscientMode);
         Scribe_Values.Look(ref bestGeneChance, "bestGeneChance", defaults.bestGeneChance);
     }

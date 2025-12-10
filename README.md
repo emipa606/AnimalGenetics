@@ -6,6 +6,7 @@ Update of gregorycurries mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2226725974
 
 - Resource yield should now affect egglaying speed as well as the amount of eggs layed
+- Wildness should now also be affected
 
 ![Image](https://img.litet.net/logos/Notice.png)
 	

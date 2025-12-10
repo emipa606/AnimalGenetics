@@ -50,6 +50,8 @@
   <AG.ColorMode>Color Mode</AG.ColorMode>
   <AG.ColorNormal>Normal</AG.ColorNormal>
   <AG.ColorNormalTooltip>Traditional red, yellow, green color scheme.</AG.ColorNormalTooltip>
+  <AG.WildnessMode>Affect wildness</AG.WildnessMode>
+  <AG.WildnessModeTooltip>Improved genetics will lower the wildness of an animal</AG.WildnessModeTooltip>
   <AG.ColorRPG>RPG</AG.ColorRPG>
   <AG.ColorRPGTooltip>RPG style item quality color scheme.</AG.ColorRPGTooltip>
   <AG.HumanlikeGenes>Apply Genes to Humanlikes</AG.HumanlikeGenes>

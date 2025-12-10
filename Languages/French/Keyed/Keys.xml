@@ -76,4 +76,6 @@
   <!-- Note the newline (\n) -->
   <!-- Pawn Genetics Tab -->
   <!-- Mod Settings menu -->
+  <AG.WildnessMode>Affecter la sauvagerie</AG.WildnessMode>
+  <AG.WildnessModeTooltip>L'amélioration de la génétique réduit la sauvagerie d'un animal.</AG.WildnessModeTooltip>
 </LanguageData>

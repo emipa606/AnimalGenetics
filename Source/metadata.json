@@ -3,13 +3,14 @@
   "CanAdd": "0",
   "CanRemove": "0",
   "PreviewVersion": "1.6",
-  "LastXmlCleaning": "2025-12-09T20:13:32.1814625+01:00",
+  "LastXmlCleaning": "2025-12-10T11:25:41.2372162+01:00",
   "SocialImageSet": true,
   "SearchTags": " evolution",
   "Patches": true,
   "Defs": true,
   "Assemblies": true,
-  "LinesOfCode": 105112,
-  "LinesOfXML": 4768,
-  "CodeBaseSize": 79
+  "LinesOfCode": 109408,
+  "LinesOfXML": 5040,
+  "CodeBaseSize": 79,
+  "RimWorldBaseId": 23394
 }
