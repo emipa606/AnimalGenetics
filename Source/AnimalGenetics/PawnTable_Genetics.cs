@@ -11,7 +11,7 @@ public class PawnTable_Genetics(PawnTableDef def, Func<IEnumerable<Pawn>> pawnsG
 {
     public override IEnumerable<Pawn> PrimarySortFunction(IEnumerable<Pawn> input)
     {
-        switch (Settings.UI.sortMode)
+        switch (CoreMod.Instance.Settings.sortMode)
         {
             case 1:
                 return from p in input

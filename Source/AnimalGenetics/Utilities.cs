@@ -31,7 +31,7 @@ public static class Utilities
 
     public static Color TextColor(float mod)
     {
-        var points = colorProfiles[Settings.UI.colorMode];
+        var points = colorProfiles[CoreMod.Instance.Settings.colorMode];
         var ml = new MultiLerp(points);
 
         return ml.Apply(mod);

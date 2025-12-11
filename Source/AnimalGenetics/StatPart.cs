@@ -34,7 +34,7 @@ public class StatPart : RimWorld.StatPart
             return "";
         }
 
-        if (!Settings.Core.omniscientMode && pawn.Faction != Faction.OfPlayer)
+        if (!CoreMod.Instance.Settings.omniscientMode && pawn.Faction != Faction.OfPlayer)
         {
             return null;
         }

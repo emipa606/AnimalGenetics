@@ -85,7 +85,7 @@ internal class SettingsUI
         }
     }
 
-    public static void DoSettings(CoreSettings settings, Rect rect)
+    public static void DoCoreSettings(Rect rect)
     {
         float curY = 80;
 
@@ -98,10 +98,11 @@ internal class SettingsUI
         generationGraph.y = listingStandard.CurHeight;
 
         listingStandard.Label("AG.Settings1".Translate(), -1f, "AG.Settings1Tooltip".Translate());
-        listingStandard.Label("AG.Mean".Translate() + " : " + (settings.mean * 100).ToString("F0"));
-        settings.mean = listingStandard.Slider(settings.mean, 0f, 2f);
-        listingStandard.Label("AG.StandardDeviation".Translate() + " : " + (settings.stdDev * 100).ToString("F0"));
-        settings.stdDev = listingStandard.Slider(settings.stdDev, 0f, 0.5f);
+        listingStandard.Label("AG.Mean".Translate() + " : " + (CoreMod.Instance.Settings.mean * 100).ToString("F0"));
+        CoreMod.Instance.Settings.mean = listingStandard.Slider(CoreMod.Instance.Settings.mean, 0f, 2f);
+        listingStandard.Label("AG.StandardDeviation".Translate() + " : " +
+                              (CoreMod.Instance.Settings.stdDev * 100).ToString("F0"));
+        CoreMod.Instance.Settings.stdDev = listingStandard.Slider(CoreMod.Instance.Settings.stdDev, 0f, 0.5f);
 
         generationGraph.height = listingStandard.CurHeight - generationGraph.y;
 
@@ -110,11 +111,14 @@ internal class SettingsUI
         mutationGraph.y = listingStandard.CurHeight;
 
         listingStandard.Label("AG.Settings2".Translate(), -1f, "AG.Settings2Tooltip".Translate());
-        listingStandard.Label("AG.Mean".Translate() + " : " + (settings.mutationMean * 100).ToString("F0"));
-        settings.mutationMean = listingStandard.Slider(settings.mutationMean, -0.25f, 0.25f);
+        listingStandard.Label("AG.Mean".Translate() + " : " +
+                              (CoreMod.Instance.Settings.mutationMean * 100).ToString("F0"));
+        CoreMod.Instance.Settings.mutationMean =
+            listingStandard.Slider(CoreMod.Instance.Settings.mutationMean, -0.25f, 0.25f);
         listingStandard.Label("AG.StandardDeviation".Translate() + " : " +
-                              (settings.mutationStdDev * 100).ToString("F0"));
-        settings.mutationStdDev = listingStandard.Slider(settings.mutationStdDev, 0f, 0.5f);
+                              (CoreMod.Instance.Settings.mutationStdDev * 100).ToString("F0"));
+        CoreMod.Instance.Settings.mutationStdDev =
+            listingStandard.Slider(CoreMod.Instance.Settings.mutationStdDev, 0f, 0.5f);
 
         mutationGraph.height = listingStandard.CurHeight - mutationGraph.y;
 
@@ -124,16 +128,20 @@ internal class SettingsUI
         mutationGraph.y += curY;
 
         listingStandard.Label("AnimalGenetics.ChanceInheritBestGene".Translate() + " : " +
-                              (settings.bestGeneChance * 100).ToString("F0"));
-        settings.bestGeneChance = listingStandard.Slider(settings.bestGeneChance, 0.0f, 1.0f);
+                              (CoreMod.Instance.Settings.bestGeneChance * 100).ToString("F0"));
+        CoreMod.Instance.Settings.bestGeneChance =
+            listingStandard.Slider(CoreMod.Instance.Settings.bestGeneChance, 0.0f, 1.0f);
 
-        listingStandard.Label("AnimalGenetics.GeneValue".Translate(settings.geneValue.ToStringPercent()), -1f,
+        listingStandard.Label(
+            "AnimalGenetics.GeneValue".Translate(CoreMod.Instance.Settings.geneValue.ToStringPercent()), -1f,
             "AnimalGenetics.GeneValueToolTip".Translate());
-        settings.geneValue = listingStandard.Slider(settings.geneValue, 0f, 2f);
+        CoreMod.Instance.Settings.geneValue = listingStandard.Slider(CoreMod.Instance.Settings.geneValue, 0f, 2f);
         listingStandard.End();
 
-        drawGraph(generationGraph, 0, 200, settings.mean * 100, settings.stdDev * 100);
-        drawGraph(mutationGraph, -25, 25, settings.mutationMean * 100, settings.mutationStdDev * 100);
+        drawGraph(generationGraph, 0, 200, CoreMod.Instance.Settings.mean * 100,
+            CoreMod.Instance.Settings.stdDev * 100);
+        drawGraph(mutationGraph, -25, 25, CoreMod.Instance.Settings.mutationMean * 100,
+            CoreMod.Instance.Settings.mutationStdDev * 100);
 
         curY += listingStandard.CurHeight;
 
@@ -141,23 +149,23 @@ internal class SettingsUI
         listingStandard2.Begin(new Rect(0, curY, (rect.width / 2) - 10, 250f));
 
         listingStandard2.Gap(30f);
-        listingStandard2.CheckboxLabeled("AG.HumanlikeGenes".Translate(), ref settings.humanMode,
+        listingStandard2.CheckboxLabeled("AG.HumanlikeGenes".Translate(), ref CoreMod.Instance.Settings.humanMode,
             "AG.HumanlikeGenesTooltip".Translate());
-        listingStandard2.CheckboxLabeled("AG.Omniscient".Translate(), ref settings.omniscientMode,
+        listingStandard2.CheckboxLabeled("AG.Omniscient".Translate(), ref CoreMod.Instance.Settings.omniscientMode,
             "AG.OmniscientTooltip".Translate());
-        listingStandard2.CheckboxLabeled("AG.WildnessMode".Translate(), ref settings.wildnessMode,
+        listingStandard2.CheckboxLabeled("AG.WildnessMode".Translate(), ref CoreMod.Instance.Settings.wildnessMode,
             "AG.WildnessModeTooltip".Translate());
 
         if (listingStandard2.ButtonText("AG.DefaultSettings".Translate()))
         {
-            settings.Reset();
+            CoreMod.Instance.Settings.ResetCore();
         }
 
         listingStandard2.Gap(30f);
         listingStandard2.End();
     }
 
-    public static void DoSettings(UISettings settings, Rect rect)
+    public static void DoUISettings(Rect rect)
     {
         const float curY = 80;
 
@@ -165,16 +173,16 @@ internal class SettingsUI
         var listingStandard2 = new Listing_Standard();
         listingStandard2.Begin(rect2);
         listingStandard2.Label("AG.ColorMode".Translate());
-        if (listingStandard2.RadioButton("AG.ColorNormal".Translate(), settings.colorMode == 0, 8f,
+        if (listingStandard2.RadioButton("AG.ColorNormal".Translate(), CoreMod.Instance.Settings.colorMode == 0, 8f,
                 "AG.ColorNormalTooltip".Translate(), 0f))
         {
-            settings.colorMode = 0;
+            CoreMod.Instance.Settings.colorMode = 0;
         }
 
-        if (listingStandard2.RadioButton("AG.ColorRPG".Translate(), settings.colorMode == 1, 8f,
+        if (listingStandard2.RadioButton("AG.ColorRPG".Translate(), CoreMod.Instance.Settings.colorMode == 1, 8f,
                 "AG.ColorRPGTooltip".Translate(), 0f))
         {
-            settings.colorMode = 1;
+            CoreMod.Instance.Settings.colorMode = 1;
         }
 
         listingStandard2.Gap(30f);
@@ -184,12 +192,16 @@ internal class SettingsUI
         var listingStandardRhs = new Listing_Standard();
         listingStandardRhs.Begin(rhs);
         listingStandardRhs.CheckboxLabeled("AnimalGenetics.ShowGenesInAnimalsTab".Translate(),
-            ref settings.showGenesInAnimalsTab, "AnimalGenetics.ShowGenesInAnimalsTabTooltip".Translate());
+            ref CoreMod.Instance.Settings.showGenesInAnimalsTab,
+            "AnimalGenetics.ShowGenesInAnimalsTabTooltip".Translate());
         listingStandardRhs.CheckboxLabeled("AnimalGenetics.ShowGenesInWildlifeTab".Translate(),
-            ref settings.showGenesInWildlifeTab, "AnimalGenetics.ShowGenesInWildlifeTabTooltip".Translate());
+            ref CoreMod.Instance.Settings.showGenesInWildlifeTab,
+            "AnimalGenetics.ShowGenesInWildlifeTabTooltip".Translate());
         listingStandardRhs.CheckboxLabeled("AnimalGenetics.ShowBothParentsInPawnTab".Translate(),
-            ref settings.showBothParentsInPawnTab, "AnimalGenetics.ShowBothParentsInPawnTabTooltip".Translate());
-        listingStandardRhs.CheckboxLabeled("AnimalGenetics.ShowGeneticsTab".Translate(), ref settings.showGeneticsTab,
+            ref CoreMod.Instance.Settings.showBothParentsInPawnTab,
+            "AnimalGenetics.ShowBothParentsInPawnTabTooltip".Translate());
+        listingStandardRhs.CheckboxLabeled("AnimalGenetics.ShowGeneticsTab".Translate(),
+            ref CoreMod.Instance.Settings.showGeneticsTab,
             "AnimalGenetics.ShowGeneticsTabTooltip".Translate());
 
         listingStandardRhs.End();
@@ -199,15 +211,14 @@ internal class SettingsUI
         bottom.Begin(bottomRect);
         if (bottom.ButtonText("AG.DefaultSettings".Translate()))
         {
-            settings.Reset();
+            CoreMod.Instance.Settings.ResetUI();
         }
 
         bottom.End();
-
         AnimalGeneticsAssemblyLoader.PatchUI();
     }
 
-    public static void DoSettings(IntegrationSettings settings, Rect rect)
+    public static void DoIntegrationSettings(Rect rect)
     {
         const float curY = 80;
 
@@ -219,13 +230,14 @@ internal class SettingsUI
         if (AnimalGeneticsAssemblyLoader.ColonyManagerLoaded)
         {
             listingStandard2.CheckboxLabeled("AnimalGenetics.ColonyManager.Integrate".Translate(),
-                ref settings.ColonyManagerIntegration, "AnimalGenetics.ColonyManager.IntegrateTooltip".Translate());
+                ref CoreMod.Instance.Settings.ColonyManagerIntegration,
+                "AnimalGenetics.ColonyManager.IntegrateTooltip".Translate());
             listingStandard2.Label("AnimalGenetics.NeedsRestart".Translate());
             listingStandard2.Gap(30f);
         }
         else
         {
-            settings.ColonyManagerIntegration = false;
+            CoreMod.Instance.Settings.ColonyManagerIntegration = false;
         }
 
         listingStandard2.End();
@@ -235,7 +247,7 @@ internal class SettingsUI
         bottom.Begin(bottomRect);
         if (bottom.ButtonText("AG.DefaultSettings".Translate()))
         {
-            settings.Reset();
+            CoreMod.Instance.Settings.ResetIntegration();
         }
 
         bottom.End();

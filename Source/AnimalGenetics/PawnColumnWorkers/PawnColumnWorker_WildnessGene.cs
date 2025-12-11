@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -12,7 +13,7 @@ public class PawnColumnWorker_WildnessGene : PawnColumnWorker
 
     public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
     {
-        var gene = Genes.GetGene(pawn, statDef);
+        var gene = Math.Min(Genes.GetGene(pawn, statDef), 1f);
         GUI.color = Utilities.TextColor(gene);
         Text.Anchor = TextAnchor.MiddleCenter;
         Widgets.Label(rect, $"{gene * 100:F0}%");

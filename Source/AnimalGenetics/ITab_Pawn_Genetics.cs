@@ -18,7 +18,7 @@ internal class ITab_Pawn_Genetics : ITab
     {
         get
         {
-            if (!Settings.Core.omniscientMode && SelPawn.Faction != Faction.OfPlayer)
+            if (!CoreMod.Instance.Settings.omniscientMode && SelPawn.Faction != Faction.OfPlayer)
             {
                 return false;
             }
@@ -89,7 +89,7 @@ internal class ITab_Pawn_Genetics : ITab
             curY += 20;
         }
 
-        if (Settings.UI.showBothParentsInPawnTab)
+        if (CoreMod.Instance.Settings.showBothParentsInPawnTab)
         {
             drawBothParentData(rect, headerY, pawn);
         }

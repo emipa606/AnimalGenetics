@@ -18,7 +18,7 @@ internal class MarketValueCalculator : RimWorld.StatPart
 
         var factor = genes.Select(selector).Aggregate(1.0f, (lhs, rhs) => lhs * rhs);
 
-        val *= factor * Settings.Core.geneValue;
+        val *= factor * CoreMod.Instance.Settings.geneValue;
         return;
 
         float selector(StatDef g)

@@ -28,7 +28,7 @@ public static class Genes
             return false;
         }
 
-        return pawn.RaceProps.Animal || pawn.RaceProps.Humanlike && Settings.Core.humanMode;
+        return pawn.RaceProps.Animal || pawn.RaceProps.Humanlike && CoreMod.Instance.Settings.humanMode;
     }
 
     public static bool Gatherable(Pawn pawn)

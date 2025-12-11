@@ -9,8 +9,7 @@ public static class StatWorker_Wildness_GetExplanationFinalizePart
 {
     public static void Postfix(ref string __result, StatRequest req)
     {
-        var coreSettings = CoreMod.ConfigureInitialSettings ? Settings.InitialCore : Settings.Core;
-        if (!coreSettings.wildnessMode)
+        if (!CoreMod.Instance.Settings.wildnessMode)
         {
             return;
         }

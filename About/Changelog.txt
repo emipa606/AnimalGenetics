@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.6.4 - Fixed wildness option. Consolidated the settings. Wildness can no longer go above 100% or below 0%
+
+
 1.6.3 - Added mod-option for the wildness stat, unified the settings-window
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

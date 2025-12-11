@@ -20,7 +20,6 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
     private readonly float humanlikesWidth = Text.CalcSize("AG.Humanlikes".Translate()).x + CheckboxWidth;
     private readonly float otherFactionsWidth = Text.CalcSize("AG.OtherFactions".Translate()).x + CheckboxWidth;
     private readonly float wildWidth = Text.CalcSize("AG.Wild".Translate()).x + CheckboxWidth;
-    private AnimalGenetics animalGenetics;
     private int filterTextId = -1;
 
     static MainTabWindow_AnimalGenetics()
@@ -39,9 +38,9 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
     {
         get
         {
-            animalGenetics ??= Find.World.GetComponent<AnimalGenetics>();
+            field ??= Find.World.GetComponent<AnimalGenetics>();
 
-            return animalGenetics;
+            return field;
         }
     }
 
@@ -85,7 +84,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
 
         var curX = 5f;
         var curX2 = rect.width - 300f;
-        if (!Settings.Core.humanMode)
+        if (!CoreMod.Instance.Settings.humanMode)
         {
             AnimalGenetics.ShowHumans = false;
         }
@@ -94,7 +93,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
 
         //working from left side
         Text.Anchor = TextAnchor.LowerLeft;
-        if (Settings.Core.humanMode)
+        if (CoreMod.Instance.Settings.humanMode)
         {
             Widgets.CheckboxLabeled(new Rect(curX, 10f, animalsWidth, CheckboxHeight), "AG.Animals".Translate(),
                 ref AnimalGenetics.ShowAnimals, false, null, null, true);
@@ -104,7 +103,7 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
             curX += humanlikesWidth + Gap + 20f; //extra 20 for category gap
         }
 
-        if (Settings.Core.omniscientMode)
+        if (CoreMod.Instance.Settings.omniscientMode)
         {
             Widgets.CheckboxLabeled(new Rect(curX, 10f, colonyWidth, CheckboxHeight), "AG.Colony".Translate(),
                 ref AnimalGenetics.ShowFaction, false, null, null, true);
@@ -136,12 +135,12 @@ public class MainTabWindow_AnimalGenetics : MainTabWindow_PawnTable
         // Working from right side
         curX2 -= 50f;
         Text.Anchor = TextAnchor.MiddleCenter;
-        if (Widgets.ButtonText(new Rect(curX2, 10f, 42f, 24f), Constants.SortMode[Settings.UI.sortMode]))
+        if (Widgets.ButtonText(new Rect(curX2, 10f, 42f, 24f), Constants.SortMode[CoreMod.Instance.Settings.sortMode]))
         {
-            Settings.UI.sortMode += 1;
-            if (Settings.UI.sortMode >= Constants.SortMode.Count)
+            CoreMod.Instance.Settings.sortMode += 1;
+            if (CoreMod.Instance.Settings.sortMode >= Constants.SortMode.Count)
             {
-                Settings.UI.sortMode = 0;
+                CoreMod.Instance.Settings.sortMode = 0;
             }
 
             SetDirty();

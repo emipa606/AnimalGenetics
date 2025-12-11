@@ -110,7 +110,7 @@ public static class AnimalGeneticsAssemblyLoader
 
     public static void VerifyWildness()
     {
-        var coreSettings = CoreMod.ConfigureInitialSettings ? Settings.InitialCore : Settings.Core;
+        var coreSettings = CoreMod.Instance.Settings;
         if (coreSettings.wildnessMode)
         {
             // Verify that the wildness stat is included in the Constants lists
@@ -125,11 +125,6 @@ public static class AnimalGeneticsAssemblyLoader
             }
 
             if (DefDatabase<StatDef>.GetNamedSilentFail($"AnimalGenetics_{StatDefOf.Wildness.defName}") != null)
-            {
-                return;
-            }
-
-            if (!CoreMod.ConfigureInitialSettings)
             {
                 return;
             }
@@ -162,11 +157,6 @@ public static class AnimalGeneticsAssemblyLoader
                 Constants.AffectedStatsToInsert.Remove(StatDefOf.Wildness);
             }
 
-            if (!CoreMod.ConfigureInitialSettings)
-            {
-                return;
-            }
-
             var wildnessStat = DefDatabase<StatDef>.GetNamedSilentFail($"AnimalGenetics_{StatDefOf.Wildness.defName}");
             if (wildnessStat != null)
             {
@@ -183,30 +173,30 @@ public static class AnimalGeneticsAssemblyLoader
 
     public static void PatchUI()
     {
-        if (PatchState.PatchedGenesInAnimalsTab != Settings.UI.showGenesInAnimalsTab)
+        if (PatchState.PatchedGenesInAnimalsTab != CoreMod.Instance.Settings.showGenesInAnimalsTab)
         {
             PawnTableDefOf.Animals.columns = [..defaultAnimalsPawnTableDefColumns];
-            if (Settings.UI.showGenesInAnimalsTab)
+            if (CoreMod.Instance.Settings.showGenesInAnimalsTab)
             {
                 PawnTableDefOf.Animals.columns.AddRange(PawnTableColumnsDefOf.Genetics.columns);
             }
 
-            PatchState.PatchedGenesInAnimalsTab = Settings.UI.showGenesInAnimalsTab;
+            PatchState.PatchedGenesInAnimalsTab = CoreMod.Instance.Settings.showGenesInAnimalsTab;
         }
 
-        if (PatchState.PatchedGenesInWildlifeTab != Settings.UI.showGenesInWildlifeTab)
+        if (PatchState.PatchedGenesInWildlifeTab != CoreMod.Instance.Settings.showGenesInWildlifeTab)
         {
             PawnTableDefOf.Wildlife.columns = [..defaultWildlifePawnTableDefColumns];
-            if (Settings.UI.showGenesInWildlifeTab)
+            if (CoreMod.Instance.Settings.showGenesInWildlifeTab)
             {
                 PawnTableDefOf.Wildlife.columns.AddRange(PawnTableColumnsDefOf.Genetics.columns);
             }
 
-            PatchState.PatchedGenesInWildlifeTab = Settings.UI.showGenesInWildlifeTab;
+            PatchState.PatchedGenesInWildlifeTab = CoreMod.Instance.Settings.showGenesInWildlifeTab;
         }
 
         var mainButton = DefDatabase<MainButtonDef>.GetNamed("AnimalGenetics");
-        mainButton.buttonVisible = Settings.UI.showGeneticsTab;
+        mainButton.buttonVisible = CoreMod.Instance.Settings.showGeneticsTab;
     }
 
     private static class PatchState

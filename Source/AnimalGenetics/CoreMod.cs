@@ -6,20 +6,15 @@ namespace AnimalGenetics;
 
 public class CoreMod : Mod
 {
-    public static CoreSettings InitialSettings;
+    public static CoreMod Instance;
+    public readonly CoreSettings Settings;
     private int selectedTab;
 
     public CoreMod(ModContentPack content) : base(content)
     {
-        Settings.InitialCore = GetSettings<CoreSettings>();
-        // Do not read multiple different settings classes via GetSettings on a single Mod
-        // Initialize non-persisted instances for UI and Integration to avoid warnings      
-        Settings.UI ??= new UISettings();
-
-        Settings.Integration ??= new IntegrationSettings();
+        Settings = GetSettings<CoreSettings>();
+        Instance = this;
     }
-
-    public static bool ConfigureInitialSettings => Current.ProgramState == ProgramState.Entry;
 
     public override void DoSettingsWindowContents(Rect rect)
     {
@@ -50,13 +45,13 @@ public class CoreMod : Mod
         switch (selectedTab)
         {
             case 0:
-                SettingsUI.DoSettings(ConfigureInitialSettings ? Settings.InitialCore : Settings.Core, contentRect);
+                SettingsUI.DoCoreSettings(contentRect);
                 break;
             case 1:
-                SettingsUI.DoSettings(Settings.UI, contentRect);
+                SettingsUI.DoUISettings(contentRect);
                 break;
             case 2:
-                SettingsUI.DoSettings(Settings.Integration, contentRect);
+                SettingsUI.DoIntegrationSettings(contentRect);
                 break;
         }
     }

@@ -32,17 +32,19 @@ public static class GeneticCalculator
             var fatherStat = father?.GeneRecords?[stat];
 
             var motherValue = motherStat?.Value ??
-                              Mathf.Max(Rand.Gaussian(Settings.Core.mean, Settings.Core.stdDev), 0.1f);
+                              Mathf.Max(Rand.Gaussian(CoreMod.Instance.Settings.mean, CoreMod.Instance.Settings.stdDev),
+                                  0.1f);
             var fatherValue = fatherStat?.Value ??
-                              Mathf.Max(Rand.Gaussian(Settings.Core.mean, Settings.Core.stdDev), 0.1f);
+                              Mathf.Max(Rand.Gaussian(CoreMod.Instance.Settings.mean, CoreMod.Instance.Settings.stdDev),
+                                  0.1f);
 
             var highValue = Math.Max(motherValue, fatherValue);
             var lowValue = Math.Min(motherValue, fatherValue);
 
             var record = new GeneRecord();
 
-            var parentValue = Rand.Chance(Settings.Core.bestGeneChance) ? highValue : lowValue;
-            var delta = Rand.Gaussian(Settings.Core.mutationMean, Settings.Core.mutationStdDev);
+            var parentValue = Rand.Chance(CoreMod.Instance.Settings.bestGeneChance) ? highValue : lowValue;
+            var delta = Rand.Gaussian(CoreMod.Instance.Settings.mutationMean, CoreMod.Instance.Settings.mutationStdDev);
 
             if (parentValue == motherValue)
             {

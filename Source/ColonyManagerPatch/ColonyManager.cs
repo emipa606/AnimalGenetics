@@ -24,7 +24,7 @@ public class ColonyManager
 
     static ColonyManager()
     {
-        if (!Settings.Integration.ColonyManagerIntegration)
+        if (!CoreMod.Instance.Settings.ColonyManagerIntegration)
         {
             Log.Message("[AnimalGenetics]: Will not integrate into Colony Manager");
             return;
@@ -214,7 +214,7 @@ public class ColonyManager
     {
         public bool UseWithButchering;
         public bool UseWithTaming;
-        public Dictionary<StatDef, float> Values = new Dictionary<StatDef, float>();
+        public Dictionary<StatDef, float> Values = new();
 
         public Data()
         {
@@ -243,7 +243,7 @@ public class ColonyManager
             draggable = true;
         }
 
-        public override Vector2 InitialSize => new Vector2(300f, 600);
+        public override Vector2 InitialSize => new(300f, 600);
 
         private float doSlider(Listing_Standard listingStandard, StatDef gene)
         {

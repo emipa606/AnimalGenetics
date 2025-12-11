@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
@@ -9,8 +10,7 @@ public static class StatWorker_GetValue
 {
     public static void Postfix(ref float __result, StatRequest req, RimWorld.StatWorker __instance)
     {
-        var coreSettings = CoreMod.ConfigureInitialSettings ? Settings.InitialCore : Settings.Core;
-        if (!coreSettings.wildnessMode)
+        if (!CoreMod.Instance.Settings.wildnessMode)
         {
             return;
         }
@@ -37,5 +37,6 @@ public static class StatWorker_GetValue
         }
 
         __result *= Genes.GetGene(pawn, StatDefOf.Wildness);
+        __result = Math.Min(__result, 1f);
     }
 }
