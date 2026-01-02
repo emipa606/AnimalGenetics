@@ -67,9 +67,13 @@ internal class ITab_Pawn_Genetics : ITab
 
         curY += 20;
 
-        var stats = Constants.AffectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
-        foreach (var stat in stats)
+        foreach (var stat in Constants.AffectedStats)
         {
+            if (stat == AnimalGenetics.GatherYield && !Genes.Gatherable(pawn))
+            {
+                continue;
+            }
+
             var rect2 = new Rect(rect.x, curY, rect.width, 20f);
             TooltipHandler.TipRegion(rect2, Genes.GetTooltip(stat));
             if (Mouse.IsOver(rect2))
@@ -104,7 +108,7 @@ internal class ITab_Pawn_Genetics : ITab
     public override void UpdateSize()
     {
         base.UpdateSize();
-        size = new Vector2(300f, 225f);
+        size = new Vector2(300f, 250f);
     }
 
     private static void drawBothParentData(Rect rect, float curY, Pawn pawn)
@@ -128,9 +132,13 @@ internal class ITab_Pawn_Genetics : ITab
         var motherGeneRecords = pawn.AnimalGenetics()?.Mother?.GeneRecords;
         var fatherGeneRecords = pawn.AnimalGenetics()?.Father?.GeneRecords;
 
-        var stats = Constants.AffectedStats.Where(stat => stat != AnimalGenetics.GatherYield || Genes.Gatherable(pawn));
-        foreach (var stat in stats)
+        foreach (var stat in Constants.AffectedStats)
         {
+            if (stat == AnimalGenetics.GatherYield && !Genes.Gatherable(pawn))
+            {
+                continue;
+            }
+
             var statRecord = statsGroup[stat];
             var motherStatRecord = motherGeneRecords?.TryGetValue(stat);
             var fatherStatRecord = fatherGeneRecords?.TryGetValue(stat);

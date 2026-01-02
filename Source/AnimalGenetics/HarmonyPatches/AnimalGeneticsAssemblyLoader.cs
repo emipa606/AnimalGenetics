@@ -76,7 +76,7 @@ public static class AnimalGeneticsAssemblyLoader
 
             if (ModLister.GetActiveModWithIdentifier("OskarPotocki.VanillaFactionsExpanded.Core", true) != null)
             {
-                GatherableTypes.Add(AccessTools.TypeByName("AnimalBehaviours.CompAnimalProduct"));
+                GatherableTypes.Add(AccessTools.TypeByName("VEF.AnimalBehaviours.CompAnimalProduct"));
             }
 
             if (LoadedModManager.RunningModsListForReading.Any(x => x.PackageId == "rim.job.world"))

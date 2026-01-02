@@ -1,5 +1,8 @@
 # Changelog for AnimalGenetics
 
+1.6.5 - Fixed visibility of VEF gatherable stat
+
+
 1.6.4 - Fixed wildness option. Consolidated the settings. Wildness can no longer go above 100% or below 0%
 
 
