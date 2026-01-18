@@ -62,6 +62,11 @@ public static class GeneticCalculator
 
             record.Value = Math.Max(parentValue + delta, 0);
 
+            if (stat == StatDefOf.Wildness)
+            {
+                record.Value = Mathf.Min(record.Value, 1f);
+            }
+
             records[stat] = record;
         }
     }
